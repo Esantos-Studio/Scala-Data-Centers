@@ -1,0 +1,895 @@
+/* ==========================================================================
+   Scala Data Centers — Homepage
+   Built from Figma (node 15797:26730) — design tokens below mirror the
+   Figma variables (Brand/Primary, Brand/Secondary, Text/*, Border Radius/*)
+   ========================================================================== */
+
+:root {
+  /* Brand colors */
+  --brand-primary: #01032c;
+  --brand-secondary: #0f8ba8;
+  --brand-secondary-hover: #46b4c9;
+  --brand-secondary-border-hover: #7fd0e0;
+  --brand-accent: #03f7c9;
+
+  /* Neutrals */
+  --text-body: #252b37;
+  --text-white: #ffffff;
+  --bg-footer: #000114;
+  --bg-white: #ffffff;
+
+  /* Radii */
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+  --radius-xl: 24px;
+  --radius-section: 42px;
+  --radius-pill: 50px;
+
+  /* Section spacing */
+  --section-pad-y: 80px 88px;
+  --container-max: 1216px;
+
+  /* Fonts */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-paragraph: 'Montserrat', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-paragraph);
+  color: var(--text-body);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button { font-family: inherit; cursor: pointer; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow img { width: 52px; height: 10px; }
+.eyebrow span {
+  color: var(--brand-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+h1, h2, h3, h4, h5, h6 { margin: 0; font-family: var(--font-heading); font-weight: 600; color: var(--brand-primary); line-height: 1.3; }
+h2 { font-size: 42px; }
+h3 { font-size: 32px; }
+
+p { margin: 0; }
+.paragraph-l { font-size: 18px; line-height: 27px; color: var(--text-body); }
+
+/* Buttons */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--brand-secondary);
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 4px 4px 4px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  white-space: nowrap;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.btn-pill:hover {
+  background: var(--brand-secondary-hover);
+  box-shadow: 0 4px 14px rgba(15,139,168,0.35);
+  transform: translateY(-1px);
+}
+.btn-pill .icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: var(--brand-secondary-hover);
+  border: 1px solid var(--brand-secondary);
+  transition: transform 0.2s ease;
+}
+.btn-pill .icon-circle svg { width: 20px; height: 20px; }
+.btn-pill:hover .icon-circle { transform: translateX(3px); }
+.btn-pill.on-dark .icon-circle { background: var(--text-white); }
+
+/* Hug contents (Figma "Hug" sizing) — these buttons sit in column-flex
+   containers that stretch children by default; keep them at their natural width */
+.solutions-body > .btn-pill,
+.global-presence-content > .btn-pill,
+.feature-block-text > .btn-pill,
+.cta-banner-content > .btn-pill {
+  align-self: flex-start;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--brand-primary);
+  border-radius: var(--radius-pill);
+  padding: 11px 13px;
+  min-height: 40px;
+  background: transparent;
+  color: var(--brand-primary);
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline:hover {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: var(--text-white);
+}
+.btn-outline svg { width: 16px; height: 16px; }
+
+.btn-arrow-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--brand-secondary-border-hover);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  background: transparent;
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.btn-arrow-small svg { width: 16px; height: 16px; stroke: var(--brand-secondary); transition: stroke 0.2s ease, transform 0.2s ease; }
+.btn-arrow-small:hover,
+.solution-card:hover .btn-arrow-small {
+  background: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+}
+.btn-arrow-small:hover svg,
+.solution-card:hover .btn-arrow-small svg {
+  stroke: var(--text-white);
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header-wrap {
+  position: sticky;
+  top: 10px;
+  z-index: 100;
+  padding: 0 10px;
+}
+.site-header {
+  position: relative;
+  max-width: 1420px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid rgba(179,228,238,0.2);
+  border-radius: var(--radius-m);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 16px 24px;
+  z-index: 2;
+}
+/* When any dropdown is open, flatten the header's bottom corners so it
+   fuses seamlessly with the panel glued directly beneath it. */
+.site-header.dropdown-open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none;
+}
+.header-content { display: flex; align-items: center; gap: 32px; flex: 1; min-width: 0; }
+.logo-wrapper img { width: 150px; height: 43px; }
+.nav-menu { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.nav-menu .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 17px;
+  border-radius: 50px;
+  background: none;
+  border: none;
+  color: var(--brand-primary);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-menu .nav-link svg { width: 18px; height: 18px; transition: transform 0.25s ease; }
+.nav-item { position: static; display: flex; }
+.nav-menu .nav-link:hover,
+.nav-item.open .nav-link { background: rgba(15,139,168,0.08); color: var(--brand-secondary); }
+.nav-item.open .nav-link svg { transform: rotate(180deg); }
+
+/* Dropdown panel — glued directly to the header (0 gap), same width as the
+   header itself, forming a single fluid "object" like scale.com's mega menu.
+   .site-header is the positioned ancestor (position:relative, set above), so
+   left:0/right:0 here matches the header's own box exactly — no need to
+   re-derive the header's max-width/centering formula a second time. */
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  /* Curtain reveal — clipped from the bottom up so the panel appears to
+     unroll straight down from the header's bottom edge, scale.com-style,
+     instead of fading/sliding as a whole block. */
+  clip-path: inset(0 0 100% 0);
+  transition: opacity 0.28s ease, clip-path 0.32s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: 1;
+}
+.nav-item.open .nav-dropdown { opacity: 1; clip-path: inset(0 0 0% 0); pointer-events: auto; }
+.nav-dropdown-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(179,228,238,0.2);
+  border-top: none;
+  border-radius: 0 0 var(--radius-m) var(--radius-m);
+  box-shadow: 0 20px 48px rgba(0,3,44,0.16);
+  padding: 32px;
+}
+/* Text content hugs the left at its natural width; the image is pinned to
+   the right at a fixed size — the gap between them simply grows or shrinks
+   with how much text there is, matching the reference layouts exactly. */
+.dropdown-columns { display: flex; gap: 64px; }
+.dropdown-links { display: flex; flex-direction: column; justify-content: center; gap: 24px; width: 420px; flex-shrink: 0; }
+.dropdown-link-item { display: block; padding: 4px 8px; margin: -4px -8px; border-radius: 8px; transition: background 0.2s ease; }
+.dropdown-link-item:hover { background: rgba(15,139,168,0.06); }
+.dropdown-link-item h4 { font-size: 16px; color: var(--brand-secondary); margin-bottom: 6px; }
+.dropdown-link-item p { font-size: 14px; line-height: 20px; color: var(--text-body); }
+.dropdown-image {
+  flex-shrink: 0;
+  width: 420px;
+  height: 210px;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+.dropdown-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.header-actions { display: flex; align-items: center; gap: 24px; }
+.lang-switcher { display: flex; align-items: center; gap: 8px; }
+.lang-switcher .icon-btn,
+.lang-switcher .lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 40px;
+  padding: 11px 13px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: linear-gradient(135deg, var(--brand-secondary-hover), var(--brand-secondary-border-hover));
+  color: var(--text-white);
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.lang-switcher .icon-btn:hover,
+.lang-switcher .lang-btn:hover {
+  background: linear-gradient(135deg, var(--brand-secondary), var(--brand-secondary-hover));
+}
+.lang-switcher svg { width: 16px; height: 16px; }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+/* Header-wrap is sticky with a 10px top offset baked in at rest, which the
+   normal document flow doesn't reserve space for — so padding-top here has
+   to be that 10px offset plus the actual 4px gap we want below the header. */
+.hero-section { padding: 14px 4px 4px; }
+.hero-card {
+  position: relative;
+  height: 740px;
+  background: var(--brand-primary);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+}
+
+/* Slides — absolutely stacked, cross-fade between the active one */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 64px 96px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+}
+.hero-slide.is-active { opacity: 1; visibility: visible; z-index: 2; }
+
+.hero-video,
+.hero-slide-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0,11,245,0.12), rgba(0,1,20,0.35));
+  mix-blend-mode: soft-light;
+}
+.hero-overlay--light {
+  background: linear-gradient(90deg, rgba(1,3,44,0.55) 0%, rgba(1,3,44,0.15) 55%, rgba(1,3,44,0) 75%);
+  mix-blend-mode: normal;
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-content {
+  max-width: 987px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+.hero-content h1 {
+  color: #fff;
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.hero-content h1 span { color: var(--brand-accent); }
+/* SplitText clones an accent <span> per word when it wraps more than one —
+   without this, the trailing space of each clone collapses against the next
+   inline-block clone and words run together ("umprincípio"). */
+h1 span, h2 span, h3 span { white-space: pre; }
+.hero-content .paragraph-l { color: #fff; max-width: 691px; }
+.hero-content h1.on-light { color: var(--brand-primary); }
+.hero-content .paragraph-l.on-light { color: var(--text-body); }
+
+/* Slider controls — shared across all slides, always on top */
+.hero-slider {
+  position: absolute;
+  left: 64px;
+  right: 64px;
+  bottom: 32px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.hero-slider .chevron-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 64px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.hero-slider .chevron-btn:hover {
+  background: rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.4);
+}
+.hero-slider .chevron-btn svg { width: 24px; height: 24px; stroke: #fff; }
+.hero-progress { flex: 1; display: flex; gap: 4px; max-width: 626px; }
+.hero-progress button {
+  height: 3px;
+  padding: 0;
+  border: none;
+  border-radius: 64px;
+  background: rgba(255,255,255,0.3);
+  flex: 1;
+  transition: flex 0.3s ease, background 0.3s ease;
+}
+.hero-progress button.active {
+  background: var(--brand-secondary-border-hover);
+  box-shadow: 0 0 7px #00ffcf;
+  flex: 2;
+}
+
+/* ==========================================================================
+   Stats Bar
+   ========================================================================== */
+.stats-bar-section { padding: 32px 0; }
+.stats-card {
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  flex-wrap: wrap;
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.stat-item .big-number { color: var(--brand-secondary); font-size: 42px; font-weight: 600; white-space: nowrap; }
+.stat-item .big-number .unit { font-size: 26px; }
+.stat-item .stat-label { font-size: 18px; color: var(--brand-primary); }
+
+/* ==========================================================================
+   Shared section wrapper
+   ========================================================================== */
+.section { padding: 80px 0 88px; }
+.section .container { display: flex; gap: 64px; align-items: center; }
+
+/* ==========================================================================
+   Solutions
+   ========================================================================== */
+.solutions-section .container { gap: 96px; }
+.solutions-illustration { position: relative; width: 420px; height: 544px; flex-shrink: 0; }
+.solutions-illustration .photo-frame {
+  position: absolute;
+  left: 6px; top: -34px;
+  width: 426px; height: 602px;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+.solutions-illustration .photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 1000px; }
+.solutions-illustration .pirula { position: absolute; }
+.solutions-illustration .pirula-left { left: -6px; top: 160px; width: 127px; height: 442px; }
+.solutions-illustration .pirula-right { right: -44px; top: 40px; width: 64px; height: 270px; }
+
+.solutions-content, .global-presence-content { flex: none; width: 628px; display: flex; flex-direction: column; gap: 24px; }
+.solutions-heading-block, .global-presence-text-block { display: flex; flex-direction: column; gap: 16px; }
+.solutions-heading-block h2 span, .global-presence-text-block h2 span { color: var(--brand-secondary); }
+.solutions-body { display: flex; flex-direction: column; gap: 32px; }
+.cards-solutions { display: flex; flex-direction: column; }
+.solution-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 24px 16px 16px;
+  margin-left: -16px;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.solution-card:hover { background: rgba(15,139,168,0.05); }
+.solution-card .solution-card-text { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.solution-card h4 { font-size: 20px; font-weight: 600; color: var(--brand-primary); transition: color 0.2s ease; }
+.solution-card:hover h4 { color: var(--brand-secondary); }
+.solution-card p { font-size: 16px; line-height: 24px; color: var(--text-body); }
+.solutions-divider { height: 1px; background: #e6e6ea; border: none; margin: 0; }
+
+/* ==========================================================================
+   Global Presence
+   ========================================================================== */
+.global-presence-section { padding-top: 88px; }
+.global-presence-section .container { justify-content: space-between; gap: 92px; }
+
+.globe-wrap {
+  position: relative;
+  width: 390px;
+  height: 390px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.globe-wrap .globe-disc {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Decorative orbit rings + dots around the globe */
+.globe-orbits { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(15,139,168,0.33);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.orbit-ring-1 { width: 435px; height: 435px; }
+.orbit-ring-2 { width: 486px; height: 486px; }
+.orbit-ring-3 { width: 537px; height: 537px; }
+.orbit-ring-4 { width: 578px; height: 578px; }
+
+/* Each pin travels the circumference of one of the rings above: .orbit-track
+   is a plain circle sized to match that ring's diameter, .orbit-spin rotates
+   continuously inside it (linear, 10s/turn, alternating CW/CCW), and
+   .orbit-dot sits fixed at the track's edge — i.e. right on the ring. */
+.orbit-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+}
+.orbit-spin {
+  position: absolute;
+  inset: 0;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+}
+.orbit-dot {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 100%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  background: var(--brand-secondary);
+  box-shadow: 0 0 0 7px rgba(15,139,168,0.16);
+}
+
+/* Dot 1 — ring 3 (537px) */
+.orbit-track-1 { width: 537px; height: 537px; margin: -268.5px 0 0 -268.5px; }
+.orbit-spin-1 { transform: rotate(184.49deg); animation-name: spin1; }
+@keyframes spin1 { to { transform: rotate(544.49deg); } }
+
+/* Dot 2 — ring 4 (578px) */
+.orbit-track-2 { width: 578px; height: 578px; margin: -289px 0 0 -289px; }
+.orbit-spin-2 { transform: rotate(268.48deg); animation-name: spin2; }
+@keyframes spin2 { to { transform: rotate(-91.52deg); } }
+
+/* Dot 3 — ring 2 (486px) */
+.orbit-track-3 { width: 486px; height: 486px; margin: -243px 0 0 -243px; }
+.orbit-spin-3 { transform: rotate(35.7deg); animation-name: spin3; }
+@keyframes spin3 { to { transform: rotate(395.7deg); } }
+
+/* Dot 4 — ring 4 (578px) */
+.orbit-track-4 { width: 578px; height: 578px; margin: -289px 0 0 -289px; }
+.orbit-spin-4 { transform: rotate(91.52deg); animation-name: spin4; }
+@keyframes spin4 { to { transform: rotate(-268.48deg); } }
+
+/* Dot 5 — ring 3 (537px) */
+.orbit-track-5 { width: 537px; height: 537px; margin: -268.5px 0 0 -268.5px; }
+.orbit-spin-5 { transform: rotate(355.47deg); animation-name: spin5; }
+@keyframes spin5 { to { transform: rotate(715.47deg); } }
+
+/* Dot 6 — ring 1 (435px) */
+.orbit-track-6 { width: 435px; height: 435px; margin: -217.5px 0 0 -217.5px; }
+.orbit-spin-6 { transform: rotate(311.32deg); animation-name: spin6; }
+@keyframes spin6 { to { transform: rotate(-48.68deg); } }
+
+/* Dot 7 — ring 2 (486px) */
+.orbit-track-7 { width: 486px; height: 486px; margin: -243px 0 0 -243px; }
+.orbit-spin-7 { transform: rotate(222.7deg); animation-name: spin7; }
+@keyframes spin7 { to { transform: rotate(582.7deg); } }
+
+/* Loose stat badges floating above the globe */
+.presence-badge {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 112px;
+  padding: 16px;
+  border-radius: var(--radius-xl);
+  background: rgba(179,228,238,0.4);
+  border: 1px solid rgba(15,139,168,0.1);
+  backdrop-filter: blur(12px);
+}
+.presence-badge-number {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 33.6px;
+  color: var(--brand-primary);
+  white-space: nowrap;
+}
+.presence-badge-label {
+  font-family: var(--font-paragraph);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #0a6175;
+}
+.presence-badge-1 { left: calc(50% - 255px); top: calc(50% - 261px); }
+.presence-badge-2 { left: calc(50% - 78px); top: calc(50% - 314px); }
+.presence-badge-3 { left: calc(50% + 102px); top: calc(50% - 261px); }
+
+/* ==========================================================================
+   Features — vertical scroll-driven tabs (Inovação / Sustentabilidade).
+   The illustration pins in place while the tab list scrolls past; each tab
+   crossing the center of the viewport becomes the active one, expanding its
+   body (accordion-style) and crossfading the pinned image to match.
+   ========================================================================== */
+.features-section { padding: 120px 88px 88px; position: relative; }
+.features-section .container { max-width: 1216px; margin: 0 auto; position: relative; z-index: 1; }
+
+.features-tabs { display: flex; align-items: flex-start; gap: 92px; }
+.features-tabs-visual { width: 420px; flex-shrink: 0; }
+
+.feature-block-illustration { position: relative; width: 420px; }
+.feature-block-illustration .photo-frame {
+  position: relative;
+  width: 420px; height: 560px;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+.features-tab-img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 1000px;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.features-tab-img.is-active { opacity: 1; }
+.feature-block-illustration .pirula { position: absolute; }
+.feature-block-illustration .pirula-left { left: -30px; top: -10px; width: 129px; height: 370px; }
+.feature-block-illustration .pirula-right { right: -50px; top: 265px; width: 116px; height: 377px; }
+
+.features-tabs-list { flex: none; width: 628px; display: flex; flex-direction: column; }
+.features-tab {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px 0;
+  border-bottom: 1px solid #e6e6ea;
+}
+.features-tab:last-child { border-bottom: none; }
+.features-tab-header { display: flex; flex-direction: column; gap: 16px; }
+.features-tab-header h3 { opacity: 0.35; transition: opacity 0.35s ease; }
+.features-tab-header h3 span { color: var(--brand-secondary); }
+.features-tab.is-active .features-tab-header h3 { opacity: 1; }
+.features-tab-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+.features-tab.is-active .features-tab-body { max-height: 260px; opacity: 1; }
+
+/* ==========================================================================
+   Blog
+   ========================================================================== */
+.blog-section { padding: 80px 90px 88px; }
+.blog-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+.blog-header-text { display: flex; flex-direction: column; gap: 16px; max-width: 718px; }
+.blog-cards-grid { display: flex; gap: 8px; align-items: stretch; }
+.blog-card {
+  position: relative;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+}
+.blog-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+}
+.blog-card:hover .blog-card-bg { transform: scale(1.08); }
+.blog-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(1,3,44,0.75) 0%, rgba(1,3,44,0) 55%);
+  pointer-events: none;
+}
+.blog-card-large { height: 620px; flex: 1.35; }
+.blog-cards-small-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.blog-cards-small-row { display: flex; gap: 8px; }
+.blog-card-small { height: 302px; flex: 1; }
+.blog-card-content {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* Frosted navy panel behind the text — per dev-mode spec: a 180deg gradient
+   (transparent to solid #01032C, blended with `multiply` so it tints/darkens
+   the photo rather than flatly covering it) plus a 12px backdrop blur. Sits
+   behind the content box and grows with it as the hover reveal expands. */
+.blog-card-content::before {
+  content: '';
+  position: absolute;
+  inset: -60px 0 0 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(1,3,44,0) 0%, rgba(1,3,44,0.9) 90%, rgba(1,3,44,0.9) 100%);
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.blog-badge { color: var(--brand-accent); font-size: 16px; font-weight: 500; }
+.blog-card-large .blog-title { color: #fff; font-size: 32px; font-weight: 600; line-height: 1.3; }
+.blog-card-small .blog-title { color: #fff; font-size: 18px; font-weight: 700; line-height: 27px; }
+
+/* Hover reveal — excerpt, author/date and "Ler artigo" stay collapsed until
+   the card is hovered, expanding the frosted panel above along with them. */
+.blog-card-more {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
+}
+.blog-card:hover .blog-card-more { max-height: 260px; opacity: 1; }
+.blog-card-excerpt { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 21px; }
+.blog-card-meta { display: flex; align-items: center; gap: 10px; }
+.blog-card-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+}
+.blog-card-avatar svg { width: 18px; height: 18px; stroke: #fff; }
+.blog-card-meta-text { display: flex; flex-direction: column; gap: 2px; }
+.blog-card-author { color: #fff; font-size: 14px; font-weight: 600; line-height: 18px; }
+.blog-card-date { color: rgba(255,255,255,0.65); font-size: 12px; line-height: 16px; }
+.blog-card-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--brand-accent);
+  font-size: 14px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+.blog-card-readmore svg { width: 16px; height: 16px; stroke: currentColor; transition: transform 0.2s ease; }
+.blog-card-readmore:hover svg { transform: translateX(3px); }
+
+/* ==========================================================================
+   CTA Banner
+   ========================================================================== */
+.cta-banner-section { padding: 2px 2px 0; }
+.cta-banner-card {
+  position: relative;
+  max-width: 1436px;
+  margin: 0 auto;
+  height: 550px;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: linear-gradient(100deg, rgba(1,3,44,0.15) 30%, rgba(1,3,44,0.92) 65%),
+              url('../Assets/background-cta.jpg') center / cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 62px 88px;
+}
+.cta-banner-content { max-width: 550px; display: flex; flex-direction: column; gap: 16px; }
+.cta-banner-content .eyebrow span { color: #fff; }
+.cta-banner-content h2 { color: #fff; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer { padding: 2px; }
+.footer-inner {
+  max-width: 1436px;
+  margin: 0 auto;
+  background: var(--bg-footer);
+  border-radius: var(--radius-m);
+  padding: 88px 64px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.footer-columns { display: flex; justify-content: space-between; gap: 44px; margin-bottom: 120px; flex-wrap: wrap; }
+.footer-brand { width: 379px; max-width: 100%; display: flex; flex-direction: column; gap: 40px; }
+.footer-brand img.logo { width: 138px; height: auto; }
+.footer-brand p { color: #e6e6ea; font-size: 16px; line-height: 24px; }
+.social-icons { display: flex; gap: 24px; }
+.social-icons img, .social-icons svg { width: 16px; height: 16px; filter: brightness(0) invert(1); opacity: 0.9; }
+
+.footer-links-wrapper { flex: 1; display: flex; flex-direction: column; gap: 32px; min-width: 280px; }
+.footer-links-row { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-col { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 16px; }
+.footer-col h5 { color: var(--brand-secondary-border-hover); font-size: 14px; font-weight: 500; text-transform: uppercase; margin: 0; }
+.footer-col a { color: #fff; font-size: 14px; font-weight: 500; }
+.footer-col-buttons { flex-wrap: wrap; gap: 12px; flex-direction: row; align-items: flex-start; }
+.footer-outline-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  border: 1px solid #fff; border-radius: 50px;
+  padding: 11px 13px; min-height: 40px;
+  color: #fff; font-size: 12px; font-weight: 500;
+}
+.footer-outline-btn svg { width: 16px; height: 16px; }
+
+.footer-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 24px; }
+.footer-bottom p { color: rgba(255,255,255,0.8); font-size: 12px; }
+.footer-bottom a { text-decoration: underline; }
+
+/* ==========================================================================
+   Scroll effects — reveal-on-scroll fade (AOS-style) + parallax + decorative
+   background pirulas
+   ========================================================================== */
+/* Fade + rise into place the first time an element scrolls into view.
+   Toggled by the shared IntersectionObserver script near the end of the page. */
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-fade.is-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-fade { opacity: 1; transform: none; transition: none; }
+}
+
+/* Elements flagged [data-parallax] get a continuous translateY drift tied to
+   scroll position (see the rAF-driven script near the end of the page) —
+   applied to the globe, its stat badges, the feature/solutions illustrations
+   and the decorative background pirulas so nothing on the page reads as
+   perfectly static while scrolling. */
+[data-parallax] { will-change: transform; }
+
+/* Decorative outline pill shapes scattered behind section content — purely
+   ambient, never interactive. */
+.bg-pirula { position: absolute; z-index: 0; opacity: 0.5; pointer-events: none; }
+.bg-pirula-solutions { right: 40px; top: 60px; width: 105px; }
+.bg-pirula-features { left: -40px; bottom: -60px; width: 166px; }
+.bg-pirula-cta { right: 60px; top: -80px; width: 157px; }
+.solutions-section, .features-section, .cta-banner-section { position: relative; }
+.solutions-section .container,
+.cta-banner-content { position: relative; z-index: 1; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .site-header .nav-menu { display: none; }
+  .section .container,
+  .global-presence-section .container { flex-direction: column; }
+  .globe-wrap, .solutions-illustration { margin: 0 auto; }
+  .blog-cards-grid { flex-direction: column; }
+  .features-tabs { flex-direction: column; }
+  .feature-block-illustration { margin: 0 auto; position: static !important; transform: none !important; }
+  .hero-content h1 { font-size: 36px; }
+  .footer-columns { flex-direction: column; }
+}

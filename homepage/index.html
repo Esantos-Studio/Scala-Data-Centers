@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scala Data Centers — Liderando a Infraestrutura Digital Sustentável na América Latina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Icon sprite (Untitled UI style icons used across the design) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V19c0 .6-.4 1-1 1C10 20 4 14 4 6c0-.6.4-1 1-1h2.9c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ==========================================================================
+     Header
+     ========================================================================== -->
+<div class="site-header-wrap">
+  <header class="site-header">
+    <div class="header-content">
+      <div class="logo-wrapper">
+        <img src="../Assets/Logotype.svg" alt="Scala Data Centers">
+      </div>
+      <nav class="nav-menu">
+
+        <div class="nav-item">
+          <button class="nav-link" aria-expanded="false">Soluções <svg><use href="#icon-chevron-down"/></svg></button>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+            <div class="dropdown-links">
+              <a class="dropdown-link-item" href="#">
+                <h4>Qualidade, Disponibilidade e Segurança</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+              <a class="dropdown-link-item" href="#">
+                <h4>Colocation &amp; Conectividade</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+              <a class="dropdown-link-item" href="#">
+                <h4>Data Centers Hiperescaláveis</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+            </div>
+            <div class="dropdown-image"><img src="../Assets/img-menu-solucoes.jpg" alt="Soluções Scala Data Centers"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-link">Data Centers</button>
+
+        <div class="nav-item">
+          <button class="nav-link" aria-expanded="false">Sobre nós <svg><use href="#icon-chevron-down"/></svg></button>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+            <div class="dropdown-columns">
+              <div class="dropdown-links">
+                <a class="dropdown-link-item" href="#">
+                  <h4>Cultura e História Scala</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+                <a class="dropdown-link-item" href="#">
+                  <h4>Liderança</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+                <a class="dropdown-link-item" href="#">
+                  <h4>Carreira</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+              </div>
+              <div class="dropdown-links">
+                <a class="dropdown-link-item" href="#">
+                  <h4>Governança, Riscos e Compliance</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+                <a class="dropdown-link-item" href="#">
+                  <h4>Premiações</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+              </div>
+            </div>
+            <div class="dropdown-image"><img src="../Assets/img-menu-sobre.jpg" alt="Sobre a Scala Data Centers"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" aria-expanded="false">Inovação <svg><use href="#icon-chevron-down"/></svg></button>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+            <div class="dropdown-links">
+              <a class="dropdown-link-item" href="#">
+                <h4>Scala AI City</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+              <a class="dropdown-link-item" href="#">
+                <h4>Campus Tamboré</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+            </div>
+            <div class="dropdown-image"><img src="../Assets/img-menu-inovacao.jpg" alt="Inovação Scala Data Centers"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" aria-expanded="false">Sustentabilidade <svg><use href="#icon-chevron-down"/></svg></button>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+            <div class="dropdown-columns">
+              <div class="dropdown-links">
+                <a class="dropdown-link-item" href="#">
+                  <h4>Programa ESG</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+                <a class="dropdown-link-item" href="#">
+                  <h4>Debênture Verde</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+                <a class="dropdown-link-item" href="#">
+                  <h4>Impacto Social</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+              </div>
+              <div class="dropdown-links">
+                <a class="dropdown-link-item" href="#">
+                  <h4>Ações Ambientais</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+                <a class="dropdown-link-item" href="#">
+                  <h4>Premiações</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </a>
+              </div>
+            </div>
+            <div class="dropdown-image"><img src="../Assets/img-menu-sustentabilidade.jpg" alt="Sustentabilidade Scala Data Centers"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <button class="nav-link" aria-expanded="false">Conteúdos <svg><use href="#icon-chevron-down"/></svg></button>
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-inner">
+            <div class="dropdown-links">
+              <a class="dropdown-link-item" href="#">
+                <h4>Notícias e Mídia</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+              <a class="dropdown-link-item" href="#">
+                <h4>Press Releases</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              </a>
+            </div>
+            <div class="dropdown-image"><img src="../Assets/img-menu-conteudo.jpg" alt="Conteúdos Scala Data Centers"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="nav-link">Contato</button>
+      </nav>
+    </div>
+    <div class="header-actions">
+      <div class="lang-switcher">
+        <button class="icon-btn"><svg><use href="#icon-search"/></svg></button>
+        <button class="icon-btn"><svg><use href="#icon-user"/></svg></button>
+        <button class="lang-btn">PT <svg><use href="#icon-chevron-down"/></svg></button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main>
+
+  <!-- ========================================================================
+       Hero
+       ======================================================================== -->
+  <section class="hero-section">
+    <div class="hero-card" id="heroCarousel">
+
+      <div class="hero-slide is-active" data-slide-index="0">
+        <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+          <source src="../Assets/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Liderando a Infraestrutura Digital Sustentável na América Latina</h1>
+          <p class="paragraph-l">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+          <button class="btn-pill">
+            Porque Scala
+            <span class="icon-circle"><svg fill="none" stroke="var(--brand-primary)"><use href="#icon-arrow-right"/></svg></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-slide" data-slide-index="1">
+        <img class="hero-slide-bg" src="../Assets/background-hero-slide-04.jpg" alt="Executivo Scala Data Centers">
+        <div class="hero-overlay hero-overlay--light"></div>
+        <div class="hero-content">
+          <h1>Nascemos dentro de uma <span>estrutura profissional</span> de investimento</h1>
+          <p class="paragraph-l">A Scala é a maior plataforma de data centers hiperescaláveis e sustentáveis do continente, construída para governos, empresas e gerações.</p>
+          <button class="btn-pill">
+            Saiba mais sobre experiência global
+            <span class="icon-circle"><svg fill="none" stroke="var(--brand-primary)"><use href="#icon-arrow-right"/></svg></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-slide" data-slide-index="2">
+        <img class="hero-slide-bg" src="../Assets/background-hero-slide-05.jpg" alt="Executiva Scala Data Centers">
+        <div class="hero-content">
+          <h1 class="on-light">Para nós, <span>sustentabilidade</span> não é uma meta e sim <span>um princípio</span></h1>
+          <p class="paragraph-l on-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+          <button class="btn-pill">
+            Conheça nosso Programa ESG
+            <span class="icon-circle"><svg fill="none" stroke="var(--brand-primary)"><use href="#icon-arrow-right"/></svg></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-slider">
+        <button class="chevron-btn" id="heroPrev"><svg fill="none"><use href="#icon-chevron-left"/></svg></button>
+        <div class="hero-progress">
+          <button class="active" data-slide-target="0" aria-label="Slide 1"></button>
+          <button data-slide-target="1" aria-label="Slide 2"></button>
+          <button data-slide-target="2" aria-label="Slide 3"></button>
+        </div>
+        <button class="chevron-btn" id="heroNext"><svg fill="none"><use href="#icon-chevron-right"/></svg></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Stats Bar
+       ======================================================================== -->
+  <section class="stats-bar-section">
+    <div class="container">
+      <div class="stats-card">
+        <div class="stat-item reveal-fade">
+          <p class="big-number">7.1G<span class="unit">W</span></p>
+          <p class="stat-label">de energia garantida</p>
+        </div>
+        <div class="stat-item reveal-fade">
+          <p class="big-number">200<span class="unit">MV</span></p>
+          <p class="stat-label">em capacidade reservada</p>
+        </div>
+        <div class="stat-item reveal-fade">
+          <p class="big-number">100<span class="unit">%</span></p>
+          <p class="stat-label">energia renovável e certificada</p>
+        </div>
+        <div class="stat-item reveal-fade">
+          <p class="big-number"><span class="unit">R$</span>1,2<span class="unit">BI</span></p>
+          <p class="stat-label">em investimentos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Solutions
+       ======================================================================== -->
+  <section class="section solutions-section">
+    <img class="bg-pirula bg-pirula-solutions" data-parallax="0.08" src="../Assets/pirulas-bkg-01.svg" alt="">
+    <div class="container">
+      <div class="solutions-illustration">
+        <div class="photo-frame reveal-fade" data-parallax="0.08"><img src="../Assets/img-solucoes.png" alt="Executivo Scala Data Centers"></div>
+        <img class="pirula pirula-left" data-parallax="0.16" src="../Assets/pirulas-left-solucoes.svg" alt="">
+        <img class="pirula pirula-right" data-parallax="0.05" src="../Assets/pirulas-direita-solucoes.svg" alt="">
+      </div>
+      <div class="solutions-content">
+        <div class="solutions-heading-block">
+          <div class="eyebrow reveal-fade">
+            <img src="../Assets/pontos-eybrow.svg" alt="">
+            <span>Soluções</span>
+          </div>
+          <h2>Da <span>Colocation</span> ao <span>Hyperscale</span>, encontre a solução certa para o seu momento</h2>
+        </div>
+        <div class="solutions-body">
+          <div class="cards-solutions">
+            <div class="solution-card reveal-fade">
+              <div class="solution-card-text">
+                <h4>Conectividade &amp; Colocation</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+              </div>
+              <button class="btn-arrow-small"><svg fill="none"><use href="#icon-arrow-right"/></svg></button>
+            </div>
+            <hr class="solutions-divider">
+            <div class="solution-card reveal-fade">
+              <div class="solution-card-text">
+                <h4>Qualidade, Disponibilidade e Segurança</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+              </div>
+              <button class="btn-arrow-small"><svg fill="none"><use href="#icon-arrow-right"/></svg></button>
+            </div>
+          </div>
+          <button class="btn-pill">
+            Ver todas as soluções
+            <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Global Presence
+       ======================================================================== -->
+  <section class="section global-presence-section">
+    <div class="container">
+      <div class="global-presence-content">
+        <div class="global-presence-text-block reveal-fade">
+          <div class="eyebrow">
+            <img src="../Assets/pontos-eybrow.svg" alt="">
+            <span>Presença Geográfica e Dados Técnicos</span>
+          </div>
+          <h2>Data Centers</h2>
+          <p class="paragraph-l">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque. Aenean eget dolor commodo, finibus leo vestibulum, posuere felis.</p>
+        </div>
+        <button class="btn-pill">
+          Explorar Data Centers
+          <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span>
+        </button>
+      </div>
+      <div class="globe-wrap" id="globeWrap" data-parallax="0.1">
+        <div class="globe-orbits" aria-hidden="true">
+          <span class="orbit-ring orbit-ring-1"></span>
+          <span class="orbit-ring orbit-ring-2"></span>
+          <span class="orbit-ring orbit-ring-3"></span>
+          <span class="orbit-ring orbit-ring-4"></span>
+          <div class="orbit-track orbit-track-1"><div class="orbit-spin orbit-spin-1"><span class="orbit-dot"></span></div></div>
+          <div class="orbit-track orbit-track-2"><div class="orbit-spin orbit-spin-2"><span class="orbit-dot"></span></div></div>
+          <div class="orbit-track orbit-track-3"><div class="orbit-spin orbit-spin-3"><span class="orbit-dot"></span></div></div>
+          <div class="orbit-track orbit-track-4"><div class="orbit-spin orbit-spin-4"><span class="orbit-dot"></span></div></div>
+          <div class="orbit-track orbit-track-5"><div class="orbit-spin orbit-spin-5"><span class="orbit-dot"></span></div></div>
+          <div class="orbit-track orbit-track-6"><div class="orbit-spin orbit-spin-6"><span class="orbit-dot"></span></div></div>
+          <div class="orbit-track orbit-track-7"><div class="orbit-spin orbit-spin-7"><span class="orbit-dot"></span></div></div>
+        </div>
+        <img id="globeDisc" class="globe-disc" src="../Assets/globe-all.svg" alt="Globo — presença da Scala Data Centers na América Latina" draggable="false">
+        <div class="presence-badge presence-badge-1 badge-intro parallax-hold" data-parallax="0.06">
+          <p class="presence-badge-number">13</p>
+          <p class="presence-badge-label">data centers<br>em operação</p>
+        </div>
+        <div class="presence-badge presence-badge-2 badge-intro parallax-hold" data-parallax="0.11">
+          <p class="presence-badge-number">4</p>
+          <p class="presence-badge-label">países da<br>América Latina</p>
+        </div>
+        <div class="presence-badge presence-badge-3 badge-intro parallax-hold" data-parallax="0.06">
+          <p class="presence-badge-number">+11,8M</p>
+          <p class="presence-badge-label">m² em 55 propriedades</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Features — Inovação / Sustentabilidade as vertical scroll-driven tabs
+       (ScrollTrigger pins the illustration; each tab activates as it crosses
+       the center of the viewport). Mask/pill and images are the same ones
+       already used for Inovação.
+       ======================================================================== -->
+  <section class="features-section" id="featuresTabsSection">
+    <img class="bg-pirula bg-pirula-features" data-parallax="0.06" src="../Assets/pirulas-bkg-02.svg" alt="">
+    <div class="container">
+      <div class="features-tabs">
+        <div class="features-tabs-visual">
+          <div class="feature-block-illustration">
+            <div class="photo-frame">
+              <img class="features-tab-img is-active" data-tab="inovacao" src="../Assets/enhanced_mosaic-01.png" alt="Colaborador Scala Data Centers em obra">
+              <img class="features-tab-img" data-tab="sustentabilidade" src="../Assets/img-inovacao.png" alt="Colaboradora Scala Data Centers em obra">
+            </div>
+            <img class="pirula pirula-left" data-parallax="0.16" src="../Assets/pirulas-left-inovacao-sustentabilidade.svg" alt="">
+            <img class="pirula pirula-right" data-parallax="0.05" src="../Assets/pirulas-direita-inovacao-solucoes.svg" alt="">
+          </div>
+        </div>
+        <div class="features-tabs-list">
+          <div class="features-tab is-active" data-tab="inovacao">
+            <div class="features-tab-header">
+              <div class="eyebrow"><img src="../Assets/pontos-eybrow.svg" alt=""><span>Inovação</span></div>
+              <h3>Especialistas na <span>infraestrutura do futuro</span></h3>
+            </div>
+            <div class="features-tab-body">
+              <p class="paragraph-l">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque. Aenean eget dolor commodo, finibus leo vestibulum, posuere felis.</p>
+              <button class="btn-pill">Conheça nossas inovações <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span></button>
+            </div>
+          </div>
+          <div class="features-tab" data-tab="sustentabilidade">
+            <div class="features-tab-header">
+              <div class="eyebrow"><img src="../Assets/pontos-eybrow.svg" alt=""><span>Sustentabilidade</span></div>
+              <h3>Para nós, <span>sustentabilidade é um princípio</span></h3>
+            </div>
+            <div class="features-tab-body">
+              <p class="paragraph-l">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque. Aenean eget dolor commodo, finibus leo vestibulum, posuere felis.</p>
+              <button class="btn-pill">Explore nossas iniciativas sustentáveis <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Blog
+       ======================================================================== -->
+  <section class="blog-section">
+    <div class="blog-header">
+      <div class="blog-header-text reveal-fade">
+        <div class="eyebrow"><img src="../Assets/pontos-eybrow.svg" alt=""><span>Notícias e Mídia</span></div>
+        <h2>Perspectivas e Insights</h2>
+        <p class="paragraph-l">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+      </div>
+      <button class="btn-pill">Ver todos os artigos <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span></button>
+    </div>
+    <div class="blog-cards-grid">
+      <div class="blog-card blog-card-large">
+        <div class="blog-card-bg" style="background-image:url('../Assets/Thumbnail-card-blog-01.png');"></div>
+        <div class="blog-card-content">
+          <span class="blog-badge">Sustentabilidade</span>
+          <p class="blog-title">Scala Data Centers e BNDES concluem segunda etapa...</p>
+          <div class="blog-card-more">
+            <p class="blog-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at.</p>
+            <div class="blog-card-meta">
+              <span class="blog-card-avatar"><svg><use href="#icon-user"/></svg></span>
+              <div class="blog-card-meta-text">
+                <p class="blog-card-author">Autor</p>
+                <p class="blog-card-date">20 Jan 2025</p>
+              </div>
+            </div>
+            <a class="blog-card-readmore" href="#">Ler artigo <svg fill="none"><use href="#icon-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-cards-small-col">
+        <div class="blog-cards-small-row">
+          <div class="blog-card blog-card-small">
+            <div class="blog-card-bg" style="background-image:url('../Assets/Thumbnail-card-blog-02.png');"></div>
+            <div class="blog-card-content">
+              <span class="blog-badge">Sustentabilidade</span>
+              <p class="blog-title">Scala Data Centers e BNDES concluem segunda etapa...</p>
+              <div class="blog-card-more">
+                <p class="blog-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at.</p>
+                <div class="blog-card-meta">
+                  <span class="blog-card-avatar"><svg><use href="#icon-user"/></svg></span>
+                  <div class="blog-card-meta-text">
+                    <p class="blog-card-author">Autor</p>
+                    <p class="blog-card-date">20 Jan 2025</p>
+                  </div>
+                </div>
+                <a class="blog-card-readmore" href="#">Ler artigo <svg fill="none"><use href="#icon-arrow-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+          <div class="blog-card blog-card-small">
+            <div class="blog-card-bg" style="background-image:url('../Assets/Thumbnail-card-blog-03.png');"></div>
+            <div class="blog-card-content">
+              <span class="blog-badge">Sustentabilidade</span>
+              <p class="blog-title">Scala Data Centers e BNDES concluem segunda etapa...</p>
+              <div class="blog-card-more">
+                <p class="blog-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at.</p>
+                <div class="blog-card-meta">
+                  <span class="blog-card-avatar"><svg><use href="#icon-user"/></svg></span>
+                  <div class="blog-card-meta-text">
+                    <p class="blog-card-author">Autor</p>
+                    <p class="blog-card-date">20 Jan 2025</p>
+                  </div>
+                </div>
+                <a class="blog-card-readmore" href="#">Ler artigo <svg fill="none"><use href="#icon-arrow-right"/></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-card blog-card-small">
+          <div class="blog-card-bg" style="background-image:url('../Assets/Thumbnail-card-blog-04.png');"></div>
+          <div class="blog-card-content">
+            <span class="blog-badge">Sustentabilidade</span>
+            <p class="blog-title">Scala Data Centers e BNDES concluem segunda etapa...</p>
+            <div class="blog-card-more">
+              <p class="blog-card-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at.</p>
+              <div class="blog-card-meta">
+                <span class="blog-card-avatar"><svg><use href="#icon-user"/></svg></span>
+                <div class="blog-card-meta-text">
+                  <p class="blog-card-author">Autor</p>
+                  <p class="blog-card-date">20 Jan 2025</p>
+                </div>
+              </div>
+              <a class="blog-card-readmore" href="#">Ler artigo <svg fill="none"><use href="#icon-arrow-right"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       CTA Banner
+       ======================================================================== -->
+  <section class="cta-banner-section">
+    <div class="cta-banner-card">
+      <img class="bg-pirula bg-pirula-cta" data-parallax="0.07" src="../Assets/pirulas-bkg-03.svg" alt="">
+      <div class="cta-banner-content reveal-fade">
+        <div class="eyebrow"><img src="../Assets/pontos-eybrow.svg" alt=""><span>Entre em contato</span></div>
+        <h2>Há 6 anos habilitando a infraestrutura digital da América Latina</h2>
+        <button class="btn-pill">Conheça sobre a Cultura e História Scala <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span></button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==========================================================================
+     Footer
+     ========================================================================== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-columns">
+      <div class="footer-brand">
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          <img class="logo" src="../Assets/logo-white-footer.svg" alt="Scala Data Centers">
+          <p>Assumimos a responsabilidade de apoiar os mercados da América Latina na construção e operação da infraestrutura necessária para a evolução dos países a um novo patamar de digitalização.</p>
+        </div>
+        <div class="social-icons">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18v-8.4H5.67V18h2.67zM7 8.48c.93 0 1.51-.61 1.51-1.38-.02-.79-.58-1.39-1.49-1.39-.91 0-1.51.6-1.51 1.39 0 .77.58 1.38 1.47 1.38H7zm11 9.52v-4.83c0-2.59-1.38-3.79-3.23-3.79-1.49 0-2.15.82-2.52 1.39V9.6h-2.67s.03.62 0 8.4h2.67v-4.69c0-.25.02-.5.09-.68.2-.5.65-1.02 1.42-1.02.99 0 1.39.76 1.39 1.86V18H18z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M13.5 21v-7.5h2.5l.5-3H13.5V8.5c0-.87.24-1.46 1.5-1.46H16.5V4.35C16.24 4.32 15.35 4.24 14.3 4.24 12.1 4.24 10.6 5.58 10.6 8.02v2.48H8v3h2.6V21h2.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47.66.25 1.21.6 1.76 1.15.5.5.9 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.76 4.9 4.9 0 01-1.76 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.76-1.15 4.9 4.9 0 01-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43.25-.66.6-1.21 1.15-1.76.5-.5 1.1-.9 1.76-1.15.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 3.6A6.4 6.4 0 1012 18.4 6.4 6.4 0 0012 5.6zm0 10.57a4.17 4.17 0 110-8.34 4.17 4.17 0 010 8.34zm6.65-10.82a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M18.9 3H22l-6.9 7.88L23 21h-6.24l-4.9-6.4L6.2 21H3.08l7.4-8.44L2.6 3h6.4l4.44 5.87L18.9 3zm-1.1 16.17h1.73L7.3 4.73H5.44l12.36 14.44z"/></svg>
+        </div>
+      </div>
+      <div class="footer-links-wrapper">
+        <div class="footer-links-row">
+          <div class="footer-col">
+            <h5>Sobre nós</h5>
+            <a href="#">Nossa História</a>
+            <a href="#">Cultura Scala</a>
+            <a href="#">Premiações</a>
+            <a href="#">Carreira</a>
+          </div>
+          <div class="footer-col">
+            <h5>Soluções</h5>
+            <a href="#">Qualidade, Segurança e Disponibilidade</a>
+            <a href="#">Colocation &amp; Conectividade</a>
+            <a href="#">Data Centers</a>
+            <a href="#">Inovação</a>
+          </div>
+          <div class="footer-col">
+            <h5>ESG &amp; Transparência</h5>
+            <a href="#">Programa ESG</a>
+            <a href="#">Ações Ambientais</a>
+            <a href="#">Debênture Verde</a>
+            <a href="#">Projetos Sociais</a>
+            <a href="#">Relatório de Sustentabilidade</a>
+          </div>
+        </div>
+        <div class="footer-links-row">
+          <div class="footer-col">
+            <h5>Governança Corporativa</h5>
+            <a href="#">Liderança</a>
+            <a href="#">Política de Privacidade</a>
+            <a href="#">Investors &amp; Shareholders</a>
+            <a href="#">Documentos e Contratos</a>
+            <a href="#">Documentos Jurídicos</a>
+          </div>
+          <div class="footer-col">
+            <h5>Artigos &amp; Conteúdos</h5>
+            <a href="#">Blog</a>
+          </div>
+          <div class="footer-col footer-col-buttons" style="display:flex;">
+            <a href="#" class="footer-outline-btn"><svg><use href="#icon-user"/></svg> Painel do Cliente</a>
+            <a href="#" class="footer-outline-btn"><svg><use href="#icon-phone"/></svg> Contato</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Scala Data Centers | Segurança e Privacidade das Informações</p>
+      <p>Desenvolvido por: <a href="#">Studio Visual</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ==========================================================================
+     Header dropdown menus (hover to open, top-down animation, glued to header)
+     ========================================================================== -->
+<script>
+(function () {
+  const items = Array.from(document.querySelectorAll('.nav-item'));
+  const header = document.querySelector('.site-header');
+
+  function syncHeaderState() {
+    const anyOpen = items.some((item) => item.classList.contains('open'));
+    header.classList.toggle('dropdown-open', anyOpen);
+  }
+  function closeItem(item) {
+    item.classList.remove('open');
+    item.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+    syncHeaderState();
+  }
+  function openItem(item) {
+    items.forEach((other) => { if (other !== item) closeItem(other); });
+    item.classList.add('open');
+    item.querySelector('.nav-link').setAttribute('aria-expanded', 'true');
+    syncHeaderState();
+  }
+
+  items.forEach((item) => {
+    // Each item tracks its own close timer — sharing one across items could
+    // let a stray timer from a previously-hovered item close the wrong one.
+    let closeTimer = null;
+
+    // mouseenter/mouseleave (unlike mouseover/mouseout) don't fire when the
+    // pointer moves between the trigger and the dropdown panel beneath it —
+    // both live inside the same .nav-item, so there's no accidental close
+    // while crossing from the button into the panel.
+    item.addEventListener('mouseenter', () => {
+      clearTimeout(closeTimer);
+      openItem(item);
+    });
+    item.addEventListener('mouseleave', () => {
+      closeTimer = setTimeout(() => closeItem(item), 120);
+    });
+    item.addEventListener('focusin', () => {
+      clearTimeout(closeTimer);
+      openItem(item);
+    });
+    item.addEventListener('focusout', (e) => {
+      if (!item.contains(e.relatedTarget)) closeItem(item);
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') items.forEach(closeItem);
+  });
+})();
+</script>
+
+<!-- ==========================================================================
+     Hero carousel (3 slides, chevron + progress dot navigation, autoplay)
+     ========================================================================== -->
+<script>
+(function () {
+  const carousel = document.getElementById('heroCarousel');
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll('.hero-slide'));
+  const dots = Array.from(carousel.querySelectorAll('.hero-progress [data-slide-target]'));
+  const prevBtn = document.getElementById('heroPrev');
+  const nextBtn = document.getElementById('heroNext');
+
+  let current = 0;
+  let autoplayTimer = null;
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+    restartAutoplay();
+    carousel.dispatchEvent(new CustomEvent('heroslidechange', { detail: { index: current } }));
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function restartAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = setInterval(next, 7000);
+  }
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => goTo(Number(dot.dataset.slideTarget)));
+  });
+
+  restartAutoplay();
+})();
+</script>
+
+<!-- ==========================================================================
+     Parallax — every [data-parallax] element (globe, its stat badges, the
+     feature/solutions illustrations, decorative background pirulas) drifts
+     vertically at its own speed as the page scrolls, so nothing reads as
+     perfectly pinned to the viewport.
+     ========================================================================== -->
+<script>
+(function () {
+  const els = Array.from(document.querySelectorAll('[data-parallax]'));
+  if (!els.length) return;
+
+  let ticking = false;
+  function update() {
+    const vh = window.innerHeight;
+    els.forEach((el) => {
+      // Elements mid-intro-animation (e.g. the globe badges flying out from
+      // its center) own their own transform until that finishes — skip them
+      // here so the two scripts don't fight over the same style property.
+      if (el.classList.contains('parallax-hold')) return;
+      const speed = parseFloat(el.dataset.parallax) || 0.1;
+      const rect = el.getBoundingClientRect();
+      const centerDelta = (rect.top + rect.height / 2) - vh / 2;
+      el.style.transform = `translateY(${(centerDelta * -speed).toFixed(2)}px)`;
+    });
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+</script>
+
+<!-- ==========================================================================
+     Reveal on scroll (AOS-style fade + rise) — every .reveal-fade element
+     animates in once, the first time it crosses into the viewport.
+     ========================================================================== -->
+<script>
+(function () {
+  const els = Array.from(document.querySelectorAll('.reveal-fade'));
+  if (!els.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    els.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  els.forEach((el) => observer.observe(el));
+})();
+</script>
+
+<!-- ==========================================================================
+     Titles — GSAP SplitText character reveal (gsap.com/text). The hero H1
+     replays every time its slide becomes active; every other heading plays
+     once, the first time it scrolls into view.
+     ========================================================================== -->
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  if (!window.gsap || !window.SplitText) return;
+  gsap.registerPlugin(SplitText);
+
+  function prepare(el) {
+    // Same split type as the official "Characters" demo (chars,words,lines) —
+    // keeping 'words' in the mix groups each word's characters together (via
+    // SplitText's own word wrapper), so the line can only break BETWEEN
+    // words instead of wrapping mid-word.
+    const split = new SplitText(el, { type: 'chars,words,lines' });
+    gsap.set(split.chars, { opacity: 0, x: 150 });
+    return split;
+  }
+  function reveal(split) {
+    if (!split) return;
+    // Exact values from the "Characters" tab at gsap.com/text (SplitText demo).
+    gsap.to(split.chars, {
+      x: 0,
+      opacity: 1,
+      duration: 0.7,
+      ease: 'power4',
+      stagger: 0.04,
+      overwrite: true
+    });
+  }
+
+  // Hero H1s — split every slide's heading up front, replay on activation.
+  const carousel = document.getElementById('heroCarousel');
+  if (carousel) {
+    const heroSplits = Array.from(carousel.querySelectorAll('.hero-slide h1')).map(prepare);
+    reveal(heroSplits[0]);
+    carousel.addEventListener('heroslidechange', (e) => reveal(heroSplits[e.detail.index]));
+  }
+
+  // Section headings — reveal once when scrolled into view.
+  const headings = Array.from(document.querySelectorAll(
+    '.solutions-heading-block h2, .global-presence-text-block h2, .features-tab-header h3, .blog-header-text h2, .cta-banner-content h2'
+  ));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        reveal(prepare(entry.target));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  headings.forEach((h) => observer.observe(h));
+})();
+</script>
+
+<!-- ==========================================================================
+     Features tabs — Inovação / Sustentabilidade as vertical scroll-driven
+     tabs (ScrollTrigger). The illustration pins while the tab list scrolls
+     past; whichever tab crosses the center of the viewport becomes active,
+     expanding its body and crossfading the pinned image to match.
+     ========================================================================== -->
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const wrapper = document.querySelector('.features-tabs');
+  const list = document.querySelector('.features-tabs-list');
+  const visual = document.querySelector('.features-tabs-visual');
+  if (!wrapper || !list || !visual) return;
+
+  const tabs = Array.from(document.querySelectorAll('.features-tab'));
+  const images = Array.from(document.querySelectorAll('.features-tab-img'));
+  const illustration = document.querySelector('.feature-block-illustration');
+
+  let activeTab = tabs[0];
+
+  // Keeps the pinned image vertically centered on whichever tab is active —
+  // the illustration "follows" the content beside it as the accordion tabs
+  // change height, instead of staying locked to its start position.
+  const followY = illustration ? gsap.quickTo(illustration, 'y', { duration: 0.5, ease: 'power2.out' }) : null;
+  function updateFollow() {
+    if (!followY) return;
+    // visual (the pinned wrapper) keeps its untransformed layout rect no
+    // matter how far the illustration inside it has been translated, so
+    // it's a stable reference for the "resting" (y:0) center position.
+    const tabRect = activeTab.getBoundingClientRect();
+    const visualRect = visual.getBoundingClientRect();
+    const visualBaseCenter = visualRect.top + visualRect.height / 2;
+    const tabCenter = tabRect.top + tabRect.height / 2;
+    followY(tabCenter - visualBaseCenter);
+  }
+
+  function setActiveTab(tab) {
+    tabs.forEach((t) => t.classList.toggle('is-active', t === tab));
+    images.forEach((img) => img.classList.toggle('is-active', img.dataset.tab === tab.dataset.tab));
+    activeTab = tab;
+    updateFollow();
+  }
+
+  ScrollTrigger.create({
+    trigger: list,
+    start: 'top top+=110',
+    end: 'bottom bottom',
+    pin: visual,
+    pinSpacing: false,
+    onUpdate: updateFollow
+  });
+
+  tabs.forEach((tab) => {
+    ScrollTrigger.create({
+      trigger: tab,
+      start: 'top center',
+      end: 'bottom center',
+      onEnter: () => setActiveTab(tab),
+      onEnterBack: () => setActiveTab(tab)
+    });
+  });
+
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+
+<!-- ==========================================================================
+     Pirula scroll fade — the decorative pill shapes next to the Solutions
+     and Inovação/Sustentabilidade photo masks fade out progressively as
+     their section scrolls past, fully gone by the section's end. Runs
+     independent of the pirulas' own [data-parallax] drift and of the photo
+     mask's movement.
+     ========================================================================== -->
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.solutions-illustration .pirula, .feature-block-illustration .pirula').forEach((el) => {
+    const section = el.closest('section');
+    if (!section) return;
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: (self) => { el.style.opacity = 1 - self.progress; }
+    });
+  });
+})();
+</script>
+
+<!-- ==========================================================================
+     Globe stat badges — intro. Each badge starts scaled down, transparent
+     and behind the globe canvas, sitting exactly at the globe's center; on
+     scroll it zooms/flies out to its normal floating position. Once the
+     tween finishes, [data-parallax] takes back over (see parallax-hold
+     handling in the generic parallax script above).
+     ========================================================================== -->
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const wrap = document.getElementById('globeWrap');
+  const badges = Array.from(document.querySelectorAll('.badge-intro'));
+  if (!wrap || !badges.length) return;
+
+  const wrapRect = wrap.getBoundingClientRect();
+  const wrapCenter = { x: wrapRect.left + wrapRect.width / 2, y: wrapRect.top + wrapRect.height / 2 };
+
+  badges.forEach((badge, i) => {
+    // Read the badge's natural (untransformed) resting position so the
+    // "distance from the globe's center" is computed from real layout,
+    // not hardcoded — robust to any future CSS position tweaks.
+    const prevTransform = badge.style.transform;
+    badge.style.transform = 'none';
+    const r = badge.getBoundingClientRect();
+    badge.style.transform = prevTransform;
+    const center = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    const fromX = wrapCenter.x - center.x;
+    const fromY = wrapCenter.y - center.y;
+
+    gsap.set(badge, { x: fromX, y: fromY, scale: 0.15, opacity: 0, zIndex: 0 });
+
+    ScrollTrigger.create({
+      trigger: wrap,
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        const tl = gsap.timeline({ delay: i * 0.15, defaults: { ease: 'power3.out' } });
+        tl.to(badge, { x: 0, y: 0, scale: 1, opacity: 1, duration: 1.1 }, 0);
+        tl.set(badge, { zIndex: 5 }, 0.45);
+        tl.eventCallback('onComplete', () => badge.classList.remove('parallax-hold'));
+      }
+    });
+  });
+})();
+</script>
+
+<!-- ==========================================================================
+     Blog cards — scroll fade. Cards cascade in (fade + rise, staggered)
+     as the "Notícias e Mídia" grid scrolls into view.
+     ========================================================================== -->
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = gsap.utils.toArray('.blog-card');
+  if (!cards.length) return;
+
+  gsap.set(cards, { opacity: 0, y: 40 });
+
+  ScrollTrigger.batch(cards, {
+    start: 'top 85%',
+    once: true,
+    onEnter: (batch) => gsap.to(batch, {
+      opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12, overwrite: true
+    })
+  });
+})();
+</script>
+
+</body>
+</html>
