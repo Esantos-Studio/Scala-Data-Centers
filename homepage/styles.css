@@ -99,11 +99,7 @@ p { margin: 0; }
   font-weight: 500;
   box-shadow: 0 1px 1px rgba(0,0,0,0.05);
   white-space: nowrap;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-.btn-pill:hover {
-  box-shadow: 0 4px 14px rgba(15,139,168,0.35);
-  transform: translateY(-1px);
+  transition: background 0.2s ease;
 }
 .btn-pill .icon-circle {
   display: flex;
@@ -164,7 +160,7 @@ p { margin: 0; }
   flex-shrink: 0;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
-.btn-arrow-small svg { width: 16px; height: 16px; stroke: var(--brand-secondary); transition: stroke 0.2s ease, transform 0.2s ease; }
+.btn-arrow-small svg { width: 16px; height: 16px; stroke: var(--brand-secondary-border-hover); transition: stroke 0.2s ease, transform 0.2s ease; }
 .btn-arrow-small:hover,
 .solution-card:hover .btn-arrow-small {
   border-color: var(--brand-secondary);
@@ -524,9 +520,9 @@ h1 span, h2 span, h3 span { white-space: pre; }
   margin-left: -16px;
   border-radius: var(--radius-m);
   cursor: pointer;
-  transition: filter 0.2s ease;
+  transition: filter 0.2s ease, gap 0.2s ease;
 }
-.solution-card:hover { filter: drop-shadow(0 0 22px rgba(15,139,168,0.1)); }
+.solution-card:hover { filter: drop-shadow(0 0 22px rgba(15,139,168,0.1)); gap: 32px; }
 .solution-card .solution-card-text { flex: 1; display: flex; flex-direction: column; gap: 16px; }
 .solution-card h4 { font-size: 20px; font-weight: 600; color: var(--brand-primary); transition: color 0.2s ease; }
 .solution-card:hover h4 { color: var(--brand-secondary-text-hover); }
