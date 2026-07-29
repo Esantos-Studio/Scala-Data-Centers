@@ -1107,11 +1107,11 @@
 </script>
 
 <!-- ==========================================================================
-     Solutions pirulas — scroll-linked rise. The photo mask no longer drifts
-     with the generic [data-parallax] system; only its pirulas move: each
-     starts below its normal spot by its own distance (right rises further
-     than left, per the reference "Inicial/Final" mockup) and rises into
-     place as the section scrolls into view (scrubbed to scroll position).
+     Solutions pirulas — rise into place once when the section scrolls into
+     view. Each starts below its normal spot by its own distance (right
+     rises further than left, per the reference "Inicial/Final" mockup) and
+     plays as an eased tween (same duration/easing as the Inovação/
+     Sustentabilidade pirula move), not scrubbed to scroll position.
      ========================================================================== -->
 <script>
 (function () {
@@ -1126,20 +1126,23 @@
   // Distance each pirula starts below its rest position, measured off the
   // "Inicial"/"Final" reference mockup — left and right rise by different
   // amounts, both purely vertically. All three end at the same y:0, so one
-  // tween (and one ScrollTrigger) can drive all of them from their own
-  // individually-set starting offsets.
+  // tween can drive all of them from their own individually-set starting
+  // offsets.
   gsap.set(left, { y: 140 });
   gsap.set(right, { y: 240 });
   if (green) gsap.set(green, { y: 140 });
 
-  gsap.to([left, right, green].filter(Boolean), {
-    y: 0,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.solutions-section',
-      start: 'top bottom',
-      end: 'top 40%',
-      scrub: true
+  ScrollTrigger.create({
+    trigger: '.solutions-section',
+    start: 'top 80%',
+    once: true,
+    onEnter: () => {
+      gsap.to([left, right, green].filter(Boolean), {
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.inOut',
+        overwrite: true
+      });
     }
   });
 })();
