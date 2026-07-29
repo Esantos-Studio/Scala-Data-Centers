@@ -39,6 +39,7 @@
 
 html { scroll-behavior: smooth; }
 
+html { overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--font-paragraph);
@@ -177,6 +178,9 @@ p { margin: 0; }
 /* ==========================================================================
    Header
    ========================================================================== */
+/* 1px sentinel the sticky-detection script watches — once it scrolls out of
+   view, the header is genuinely pinned (see the IntersectionObserver below). */
+#headerSentinel { height: 1px; }
 .site-header-wrap {
   position: sticky;
   top: 10px;
@@ -193,10 +197,14 @@ p { margin: 0; }
   background: #fff;
   border: 1px solid rgba(179,228,238,0.2);
   border-radius: var(--radius-m);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   padding: 16px 24px;
   z-index: 2;
+  transition: box-shadow 0.2s ease;
 }
+/* Shadow only appears once the header is actually pinned by its own
+   position:sticky (see the headerSentinel + IntersectionObserver script) —
+   at rest, at the top of the page, it sits flush with no shadow. */
+.site-header.is-stuck { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 /* When any dropdown is open, flatten the header's bottom corners so it
    fuses seamlessly with the panel glued directly beneath it. */
 .site-header.dropdown-open {
@@ -349,13 +357,47 @@ p { margin: 0; }
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(0,11,245,0.12), rgba(0,1,20,0.35));
-  mix-blend-mode: soft-light;
+  opacity: 0.7;
+  background: linear-gradient(270deg, rgba(1,3,44,0) 0%, rgba(1,3,44,0.70) 50.48%, rgba(1,3,44,0.80) 100%);
+  mix-blend-mode: plus-darker;
 }
-.hero-overlay--light {
-  background: linear-gradient(90deg, rgba(1,3,44,0.55) 0%, rgba(1,3,44,0.15) 55%, rgba(1,3,44,0) 75%);
-  mix-blend-mode: normal;
+
+/* Two soft glow blobs behind the overlay, shared by every slide, drifting
+   up/down gently and continuously so the hero never reads as static. */
+.hero-ellipse { position: absolute; pointer-events: none; z-index: 1; }
+.hero-ellipse-1 {
+  width: 290.789px;
+  height: 555.02px;
+  left: -311.01px;
+  top: -149px;
+  border-radius: 555.02px;
+  opacity: 0.6;
+  background: rgba(15,139,168,0.70);
+  mix-blend-mode: plus-lighter;
+  filter: blur(115px);
+  animation: heroEllipseFloat1 9s ease-in-out infinite;
 }
+.hero-ellipse-2 {
+  width: 386px;
+  height: 386px;
+  right: -67px;
+  bottom: -38px;
+  border-radius: 386px;
+  opacity: 0.4;
+  background: #0F8BA8;
+  mix-blend-mode: plus-lighter;
+  filter: blur(172px);
+  animation: heroEllipseFloat2 11s ease-in-out infinite;
+}
+@keyframes heroEllipseFloat1 {
+  0%, 100% { transform: rotate(30deg) translateY(0); }
+  50% { transform: rotate(30deg) translateY(-24px); }
+}
+@keyframes heroEllipseFloat2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(22px); }
+}
+
 .hero-content { position: relative; z-index: 2; }
 .hero-content {
   max-width: 987px;
@@ -373,14 +415,12 @@ p { margin: 0; }
 }
 .hero-content h1 span { color: var(--brand-accent); }
 .hero-slide[data-slide-index="1"] .hero-content h1 span { color: #FFFFFF; }
-.hero-slide[data-slide-index="2"] .hero-content h1 span { color: #01032C; }
+.hero-slide[data-slide-index="2"] .hero-content h1 span { color: #FFFFFF; }
 /* SplitText clones an accent <span> per word when it wraps more than one —
    without this, the trailing space of each clone collapses against the next
    inline-block clone and words run together ("umprincípio"). */
 h1 span, h2 span, h3 span { white-space: pre; }
 .hero-content .paragraph-l { color: #fff; max-width: 691px; }
-.hero-content h1.on-light { color: var(--brand-primary); }
-.hero-content .paragraph-l.on-light { color: var(--text-body); }
 
 /* Slider controls — shared across all slides, always on top */
 .hero-slider {
@@ -461,11 +501,15 @@ h1 span, h2 span, h3 span { white-space: pre; }
   width: 426px; height: 602px;
   border-radius: 1000px;
   overflow: hidden;
+  z-index: 1;
 }
 .solutions-illustration .photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 1000px; }
-.solutions-illustration .pirula { position: absolute; }
+.solutions-illustration .pirula { position: absolute; z-index: 2; }
 .solutions-illustration .pirula-left { left: -6px; top: 160px; width: 127px; height: 442px; }
 .solutions-illustration .pirula-right { right: -44px; top: 40px; width: 64px; height: 270px; }
+/* Solid green accent tucked behind the photo mask — same rise-on-scroll
+   motion as pirula-left/right, just sitting a layer further back. */
+.solutions-illustration .pirula-green { left: 150px; top: 400px; width: 64px; height: 334px; z-index: 0; }
 
 .solutions-content, .global-presence-content { flex: none; width: 570px; display: flex; flex-direction: column; gap: 24px; }
 .solutions-heading-block, .global-presence-text-block { display: flex; flex-direction: column; gap: 16px; }
@@ -625,7 +669,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 }
 .presence-badge-1 { left: calc(50% - 255px); top: calc(50% - 261px); }
 .presence-badge-2 { left: calc(50% - 78px); top: calc(50% - 314px); }
-.presence-badge-3 { left: calc(50% + 102px); top: calc(50% - 261px); }
+.presence-badge-3 { left: calc(50% + 102px); top: calc(50% - 200px); }
 
 /* ==========================================================================
    Features — vertical scroll-driven tabs (Inovação / Sustentabilidade).
@@ -634,7 +678,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
    body (accordion-style) and crossfading the pinned image to match.
    ========================================================================== */
 .features-section { padding: 112px 88px 88px; position: relative; }
-.features-section .container { max-width: 1216px; margin: 0 auto; position: relative; z-index: 1; }
+.features-section .container { margin: 0 auto; position: relative; z-index: 1; }
 
 .features-tabs { display: flex; align-items: flex-start; gap: 150px; }
 .features-tabs-visual { width: 420px; flex-shrink: 0; }
@@ -668,9 +712,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
   justify-content: center;
   gap: 16px;
   padding: 32px 0;
-  border-bottom: 1px solid #e6e6ea;
 }
-.features-tab:last-child { border-bottom: none; }
 .features-tab-header { display: flex; flex-direction: column; gap: 16px; }
 .features-tab-header h3 { opacity: 0.35; transition: opacity 0.35s ease; }
 .features-tab-header h3 span { color: var(--brand-secondary); }
@@ -792,11 +834,9 @@ h1 span, h2 span, h3 span { white-space: pre; }
 /* ==========================================================================
    CTA Banner
    ========================================================================== */
-.cta-banner-section { padding: 2px 2px 0; }
+.cta-banner-section { padding: 4px 4px 0; }
 .cta-banner-card {
   position: relative;
-  max-width: 1436px;
-  margin: 0 auto;
   height: 550px;
   border-radius: var(--radius-m);
   overflow: hidden;
@@ -814,10 +854,8 @@ h1 span, h2 span, h3 span { white-space: pre; }
 /* ==========================================================================
    Footer
    ========================================================================== */
-.site-footer { padding: 2px; }
+.site-footer { padding: 4px; }
 .footer-inner {
-  max-width: 1436px;
-  margin: 0 auto;
   background: var(--bg-footer);
   border-radius: var(--radius-m);
   padding: 88px 64px 24px;
@@ -886,6 +924,17 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .solutions-section, .features-section, .cta-banner-section { position: relative; }
 .solutions-section .container,
 .cta-banner-content { position: relative; z-index: 1; }
+
+/* ==========================================================================
+   Large screens — widen the boxed content container past its normal 1216px
+   cap once there's room, with a 32px lateral gutter of its own. Hero, CTA
+   banner and Footer are excluded on purpose: they stay fluid (see their own
+   rules) at every resolution instead of ever boxing to this width.
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .container { max-width: 1440px; padding: 0 32px; }
+  .blog-section { max-width: 1440px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+}
 
 /* ==========================================================================
    Responsive
