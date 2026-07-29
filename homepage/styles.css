@@ -834,16 +834,15 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .cta-banner-section { padding: 4px 4px 0; }
 .cta-banner-card {
   position: relative;
-  height: 550px;
+  height: 414px;
   border-radius: var(--radius-m);
   overflow: hidden;
   background: linear-gradient(100deg, rgba(1,3,44,0.15) 30%, rgba(1,3,44,0.92) 65%),
               url('Assets/background-cta.jpg') center / cover no-repeat;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 0 62px 88px;
+  align-items: center;
 }
+.cta-banner-card .container { display: flex; justify-content: flex-end; }
 .cta-banner-content { max-width: 550px; display: flex; flex-direction: column; gap: 16px; }
 .cta-banner-content .eyebrow span { color: #fff; }
 .cta-banner-content h2 { color: #fff; }
