@@ -27,6 +27,7 @@
 <!-- ==========================================================================
      Header
      ========================================================================== -->
+<div id="headerSentinel" aria-hidden="true"></div>
 <div class="site-header-wrap">
   <header class="site-header">
     <div class="header-content">
@@ -193,6 +194,8 @@
         <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
           <source src="Assets/hero-video.mp4" type="video/mp4">
         </video>
+        <div class="hero-ellipse hero-ellipse-1"></div>
+        <div class="hero-ellipse hero-ellipse-2"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <h1>Liderando a Infraestrutura Digital Sustentável na América Latina</h1>
@@ -204,8 +207,10 @@
       </div>
 
       <div class="hero-slide" data-slide-index="1">
-        <img class="hero-slide-bg" src="Assets/Hero-slide-02.png" alt="Executivo Scala Data Centers com tablet">
-        <div class="hero-overlay hero-overlay--light"></div>
+        <img class="hero-slide-bg" src="Assets/hero-image-slide2.png" alt="Executivo Scala Data Centers com tablet">
+        <div class="hero-ellipse hero-ellipse-1"></div>
+        <div class="hero-ellipse hero-ellipse-2"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
           <h1>Nascemos dentro de uma <span>estrutura profissional</span> de investimento</h1>
           <button class="btn-pill">
@@ -216,9 +221,12 @@
       </div>
 
       <div class="hero-slide" data-slide-index="2">
-        <img class="hero-slide-bg" src="Assets/Hero-slide-03.png" alt="Profissional Scala Data Centers em campo">
+        <img class="hero-slide-bg" src="Assets/hero-image-slide3.png" alt="Profissional Scala Data Centers em campo">
+        <div class="hero-ellipse hero-ellipse-1"></div>
+        <div class="hero-ellipse hero-ellipse-2"></div>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1 class="on-light">Para nós, <span>sustentabilidade</span> não é uma meta e sim <span>um princípio</span></h1>
+          <h1>Para nós, <span>sustentabilidade</span> não é uma meta e sim <span>um princípio</span></h1>
           <button class="btn-pill">
             Conheça nosso Programa ESG
             <span class="icon-circle"><svg fill="none" stroke="var(--brand-primary)"><use href="#icon-arrow-right"/></svg></span>
@@ -272,9 +280,10 @@
     <img class="bg-pirula bg-pirula-solutions" data-parallax="0.08" src="Assets/pirulas-bkg-01.svg" alt="">
     <div class="container">
       <div class="solutions-illustration">
-        <div class="photo-frame reveal-fade" data-parallax="0.08"><img src="Assets/img-solucoes.png" alt="Executivo Scala Data Centers"></div>
-        <img class="pirula pirula-left" data-parallax="0.16" src="Assets/pirulas-left-solucoes.svg" alt="">
-        <img class="pirula pirula-right" data-parallax="0.05" src="Assets/pirulas-direita-solucoes.svg" alt="">
+        <img class="pirula pirula-green" src="Assets/Rectangle 207.svg" alt="">
+        <div class="photo-frame reveal-fade"><img src="Assets/img-pirula-solucoes.jpg" alt="Executivo Scala Data Centers"></div>
+        <img class="pirula pirula-left" src="Assets/pirulas-left-solucoes.svg" alt="">
+        <img class="pirula pirula-right" src="Assets/pirulas-direita-solucoes.svg" alt="">
       </div>
       <div class="solutions-content">
         <div class="solutions-heading-block">
@@ -330,7 +339,7 @@
           <span class="icon-circle"><svg fill="none" stroke="#fff"><use href="#icon-arrow-right"/></svg></span>
         </button>
       </div>
-      <div class="globe-wrap" id="globeWrap" data-parallax="0.1">
+      <div class="globe-wrap" id="globeWrap">
         <div class="globe-orbits" aria-hidden="true">
           <span class="orbit-ring orbit-ring-1"></span>
           <span class="orbit-ring orbit-ring-2"></span>
@@ -374,11 +383,11 @@
         <div class="features-tabs-visual">
           <div class="feature-block-illustration">
             <div class="photo-frame">
-              <img class="features-tab-img is-active" data-tab="inovacao" src="Assets/enhanced_mosaic-01.png" alt="Colaborador Scala Data Centers em obra">
+              <img class="features-tab-img is-active" data-tab="inovacao" src="Assets/imagem-inovacao.jpg" alt="Colaborador Scala Data Centers em obra">
               <img class="features-tab-img" data-tab="sustentabilidade" src="Assets/img-inovacao.png" alt="Colaboradora Scala Data Centers em obra">
             </div>
-            <img class="pirula pirula-left" data-parallax="0.16" src="Assets/pirulas-left-inovacao-sustentabilidade.svg" alt="">
-            <img class="pirula pirula-right" data-parallax="0.05" src="Assets/pirulas-direita-inovacao-solucoes.svg" alt="">
+            <img class="pirula pirula-left" src="Assets/pirulas-left-inovacao-sustentabilidade.svg" alt="">
+            <img class="pirula pirula-right" src="Assets/pirulas-direita-inovacao-solucoes.svg" alt="">
           </div>
         </div>
         <div class="features-tabs-list">
@@ -637,7 +646,26 @@
 </script>
 
 <!-- ==========================================================================
-     Hero carousel (3 slides, chevron + progress dot navigation, autoplay)
+     Header sticky-shadow — the header only gets its drop shadow once its own
+     position:sticky has actually pinned it, tracked via a 1px sentinel placed
+     right before it (once the sentinel scrolls out of view, the header is
+     genuinely stuck).
+     ========================================================================== -->
+<script>
+(function () {
+  const header = document.querySelector('.site-header');
+  const sentinel = document.getElementById('headerSentinel');
+  if (!header || !sentinel || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-stuck', !entry.isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(sentinel);
+})();
+</script>
+
+<!-- ==========================================================================
+     Hero carousel (3 slides, chevron + progress dot navigation — manual only)
      ========================================================================== -->
 <script>
 (function () {
@@ -650,31 +678,22 @@
   const nextBtn = document.getElementById('heroNext');
 
   let current = 0;
-  let autoplayTimer = null;
 
   function goTo(index) {
     current = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => slide.classList.toggle('is-active', i === current));
     dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
-    restartAutoplay();
     carousel.dispatchEvent(new CustomEvent('heroslidechange', { detail: { index: current } }));
   }
 
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
 
-  function restartAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(next, 7000);
-  }
-
   nextBtn.addEventListener('click', next);
   prevBtn.addEventListener('click', prev);
   dots.forEach((dot) => {
     dot.addEventListener('click', () => goTo(Number(dot.dataset.slideTarget)));
   });
-
-  restartAutoplay();
 })();
 </script>
 
@@ -836,8 +855,29 @@
   const tabs = Array.from(document.querySelectorAll('.features-tab'));
   const images = Array.from(document.querySelectorAll('.features-tab-img'));
   const illustration = document.querySelector('.feature-block-illustration');
+  const pirulaLeft = document.querySelector('.feature-block-illustration .pirula-left');
+  const pirulaRight = document.querySelector('.feature-block-illustration .pirula-right');
 
   let activeTab = tabs[0];
+
+  // Inovação (rest) vs Sustentabilidade (final) pirula positions — the two
+  // pills swap toward each other's side as the tab switches ("invertendo as
+  // setas"), then swap back when scrolling back up to Inovação.
+  function setPirulaState(isSustentabilidade) {
+    if (!pirulaLeft || !pirulaRight) return;
+    gsap.to(pirulaLeft, {
+      y: isSustentabilidade ? 240 : 0,
+      duration: 0.8,
+      ease: 'power2.inOut',
+      overwrite: true
+    });
+    gsap.to(pirulaRight, {
+      y: isSustentabilidade ? -240 : 0,
+      duration: 0.8,
+      ease: 'power2.inOut',
+      overwrite: true
+    });
+  }
 
   // Keeps the pinned image vertically centered on whichever tab is active —
   // the illustration "follows" the content beside it as the accordion tabs
@@ -860,6 +900,7 @@
     images.forEach((img) => img.classList.toggle('is-active', img.dataset.tab === tab.dataset.tab));
     activeTab = tab;
     updateFollow();
+    setPirulaState(tab.dataset.tab === 'sustentabilidade');
   }
 
   ScrollTrigger.create({
@@ -885,31 +926,6 @@
 })();
 </script>
 
-<!-- ==========================================================================
-     Pirula scroll fade — the decorative pill shapes next to the Solutions
-     and Inovação/Sustentabilidade photo masks fade out progressively as
-     their section scrolls past, fully gone by the section's end. Runs
-     independent of the pirulas' own [data-parallax] drift and of the photo
-     mask's movement.
-     ========================================================================== -->
-<script>
-(function () {
-  if (!window.gsap || !window.ScrollTrigger) return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  document.querySelectorAll('.solutions-illustration .pirula, .feature-block-illustration .pirula').forEach((el) => {
-    const section = el.closest('section');
-    if (!section) return;
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => { el.style.opacity = 1 - self.progress; }
-    });
-  });
-})();
-</script>
 
 <!-- ==========================================================================
      Big-number counters — every [data-count-to] value counts up from 0 the
@@ -1016,6 +1032,55 @@
 </script>
 
 <!-- ==========================================================================
+     Globe — independent scroll drift + mouse-centering. The globe (disc,
+     orbit rings and stat badges together, via #globeWrap) drifts vertically
+     on its own as the section scrolls, decoupled from the text column beside
+     it — they're normally NOT vertically aligned. Moving the mouse toward the
+     section's vertical center cancels that drift, so the globe settles back
+     into alignment with the content exactly when the cursor "centers" the
+     two columns on screen.
+     ========================================================================== -->
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector('.global-presence-section');
+  const globe = document.getElementById('globeWrap');
+  if (!section || !globe) return;
+
+  const SCROLL_RANGE = 60; // px of independent drift, peak-to-peak, across the section's scroll
+  const MOUSE_RADIUS = 220; // px from the section's vertical center where centering fully fades out
+
+  let scrollOffset = 0;
+  let mouseFactor = 1; // 1 = drift fully applied, 0 = cancelled (globe centered with content)
+
+  function apply() {
+    globe.style.transform = `translateY(${(scrollOffset * mouseFactor).toFixed(2)}px)`;
+  }
+
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: true,
+    onUpdate: (self) => {
+      scrollOffset = (self.progress - 0.5) * 2 * SCROLL_RANGE;
+      apply();
+    }
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    const rect = section.getBoundingClientRect();
+    const sectionCenterY = rect.top + rect.height / 2;
+    const dist = Math.abs(e.clientY - sectionCenterY);
+    mouseFactor = Math.min(1, dist / MOUSE_RADIUS);
+    apply();
+  }, { passive: true });
+})();
+</script>
+
+<!-- ==========================================================================
      Blog cards — scroll fade. Cards cascade in (fade + rise, staggered)
      as the "Notícias e Mídia" grid scrolls into view.
      ========================================================================== -->
@@ -1035,6 +1100,39 @@
     onEnter: (batch) => gsap.to(batch, {
       opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12, overwrite: true
     })
+  });
+})();
+</script>
+
+<!-- ==========================================================================
+     Solutions pirulas — scroll-linked rise. The photo mask no longer drifts
+     with the generic [data-parallax] system; only its two pirulas move, and
+     deliberately: they sit lower at rest and rise into their normal spot as
+     the section scrolls into view (scrubbed to scroll position, not time).
+     ========================================================================== -->
+<script>
+(function () {
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const left = document.querySelector('.solutions-illustration .pirula-left');
+  const right = document.querySelector('.solutions-illustration .pirula-right');
+  const green = document.querySelector('.solutions-illustration .pirula-green');
+  if (!left || !right) return;
+  const moved = [left, right, green].filter(Boolean);
+
+  const RISE_DISTANCE = 70; // px below rest position at scroll start
+
+  gsap.set(moved, { y: RISE_DISTANCE });
+  gsap.to(moved, {
+    y: 0,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.solutions-section',
+      start: 'top bottom',
+      end: 'top 35%',
+      scrub: true
+    }
   });
 })();
 </script>
