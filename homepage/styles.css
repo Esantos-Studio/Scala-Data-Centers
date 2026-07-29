@@ -113,7 +113,7 @@ p { margin: 0; }
   border: 1px solid var(--brand-secondary);
   transition: background 0.2s ease, transform 0.2s ease;
 }
-.btn-pill .icon-circle svg { width: 20px; height: 20px; }
+.btn-pill .icon-circle svg { width: 20px; height: 20px; color: var(--brand-primary); }
 .btn-pill:hover .icon-circle { background: var(--text-white); transform: translateX(3px); }
 .btn-pill.on-dark .icon-circle { background: var(--text-white); }
 
@@ -160,14 +160,14 @@ p { margin: 0; }
   flex-shrink: 0;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
-.btn-arrow-small svg { width: 16px; height: 16px; stroke: var(--brand-secondary-border-hover); transition: stroke 0.2s ease, transform 0.2s ease; }
+.btn-arrow-small svg { width: 16px; height: 16px; color: var(--brand-secondary-border-hover); transition: color 0.2s ease, transform 0.2s ease; }
 .btn-arrow-small:hover,
 .solution-card:hover .btn-arrow-small {
   border-color: var(--brand-secondary);
 }
 .btn-arrow-small:hover svg,
 .solution-card:hover .btn-arrow-small svg {
-  stroke: var(--brand-secondary);
+  color: var(--brand-secondary);
   transform: translateX(2px);
 }
 
