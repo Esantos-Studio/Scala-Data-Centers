@@ -509,7 +509,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .solutions-illustration .pirula-right { right: -44px; top: 40px; width: 64px; height: 270px; }
 /* Solid green accent tucked behind the photo mask — same rise-on-scroll
    motion as pirula-left/right, just sitting a layer further back. */
-.solutions-illustration .pirula-green { left: 150px; top: 400px; width: 64px; height: 334px; z-index: 0; }
+.solutions-illustration .pirula-green { left: -50px; top: 40px; width: 64px; height: 334px; z-index: 0; }
 
 .solutions-content, .global-presence-content { flex: none; width: 570px; display: flex; flex-direction: column; gap: 24px; }
 .solutions-heading-block, .global-presence-text-block { display: flex; flex-direction: column; gap: 16px; }

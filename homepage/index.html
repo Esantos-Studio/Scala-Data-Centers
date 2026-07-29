@@ -1106,9 +1106,10 @@
 
 <!-- ==========================================================================
      Solutions pirulas — scroll-linked rise. The photo mask no longer drifts
-     with the generic [data-parallax] system; only its two pirulas move, and
-     deliberately: they sit lower at rest and rise into their normal spot as
-     the section scrolls into view (scrubbed to scroll position, not time).
+     with the generic [data-parallax] system; only its pirulas move: each
+     starts below its normal spot by its own distance (right rises further
+     than left, per the reference "Inicial/Final" mockup) and rises into
+     place as the section scrolls into view (scrubbed to scroll position).
      ========================================================================== -->
 <script>
 (function () {
@@ -1119,12 +1120,17 @@
   const right = document.querySelector('.solutions-illustration .pirula-right');
   const green = document.querySelector('.solutions-illustration .pirula-green');
   if (!left || !right) return;
-  const moved = [left, right, green].filter(Boolean);
 
-  const RISE_DISTANCE = 70; // px below rest position at scroll start
+  // Distance each pirula starts below its rest position, measured off the
+  // "Inicial"/"Final" reference mockup — left and right rise by different
+  // amounts, both purely vertically. All three end at the same y:0, so one
+  // tween (and one ScrollTrigger) can drive all of them from their own
+  // individually-set starting offsets.
+  gsap.set(left, { y: 140 });
+  gsap.set(right, { y: 240 });
+  if (green) gsap.set(green, { y: 140 });
 
-  gsap.set(moved, { y: RISE_DISTANCE });
-  gsap.to(moved, {
+  gsap.to([left, right, green].filter(Boolean), {
     y: 0,
     ease: 'none',
     scrollTrigger: {
