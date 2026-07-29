@@ -10,6 +10,8 @@
   --brand-secondary: #0f8ba8;
   --brand-secondary-hover: #46b4c9;
   --brand-secondary-border-hover: #7fd0e0;
+  --brand-secondary-border: #b3e4ee;
+  --brand-secondary-text-hover: #0a6175;
   --brand-accent: #03f7c9;
 
   /* Neutrals */
@@ -100,7 +102,6 @@ p { margin: 0; }
   transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .btn-pill:hover {
-  background: var(--brand-secondary-hover);
   box-shadow: 0 4px 14px rgba(15,139,168,0.35);
   transform: translateY(-1px);
 }
@@ -112,12 +113,12 @@ p { margin: 0; }
   height: 40px;
   min-width: 40px;
   border-radius: 50%;
-  background: var(--brand-secondary-hover);
+  background: var(--brand-secondary-border);
   border: 1px solid var(--brand-secondary);
-  transition: transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 .btn-pill .icon-circle svg { width: 20px; height: 20px; }
-.btn-pill:hover .icon-circle { transform: translateX(3px); }
+.btn-pill:hover .icon-circle { background: var(--text-white); transform: translateX(3px); }
 .btn-pill.on-dark .icon-circle { background: var(--text-white); }
 
 /* Hug contents (Figma "Hug" sizing) — these buttons sit in column-flex
@@ -166,12 +167,11 @@ p { margin: 0; }
 .btn-arrow-small svg { width: 16px; height: 16px; stroke: var(--brand-secondary); transition: stroke 0.2s ease, transform 0.2s ease; }
 .btn-arrow-small:hover,
 .solution-card:hover .btn-arrow-small {
-  background: var(--brand-secondary);
   border-color: var(--brand-secondary);
 }
 .btn-arrow-small:hover svg,
 .solution-card:hover .btn-arrow-small svg {
-  stroke: var(--text-white);
+  stroke: var(--brand-secondary);
   transform: translateX(2px);
 }
 
@@ -524,12 +524,12 @@ h1 span, h2 span, h3 span { white-space: pre; }
   margin-left: -16px;
   border-radius: var(--radius-m);
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: filter 0.2s ease;
 }
-.solution-card:hover { background: rgba(15,139,168,0.05); }
+.solution-card:hover { filter: drop-shadow(0 0 22px rgba(15,139,168,0.1)); }
 .solution-card .solution-card-text { flex: 1; display: flex; flex-direction: column; gap: 16px; }
 .solution-card h4 { font-size: 20px; font-weight: 600; color: var(--brand-primary); transition: color 0.2s ease; }
-.solution-card:hover h4 { color: var(--brand-secondary); }
+.solution-card:hover h4 { color: var(--brand-secondary-text-hover); }
 .solution-card p { font-size: 16px; line-height: 24px; color: var(--text-body); }
 .solutions-divider { height: 1px; background: #e6e6ea; border: none; margin: 0; }
 
