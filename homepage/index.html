@@ -1036,13 +1036,15 @@
 </script>
 
 <!-- ==========================================================================
-     Globe — independent scroll drift + mouse-centering. The globe (disc,
-     orbit rings and stat badges together, via #globeWrap) drifts vertically
-     on its own as the section scrolls, decoupled from the text column beside
-     it — they're normally NOT vertically aligned. Moving the mouse toward the
-     section's vertical center cancels that drift, so the globe settles back
-     into alignment with the content exactly when the cursor "centers" the
-     two columns on screen.
+     Globe — independent scroll drift + mouse-centering, plus a soft
+     continuous parallax (same distance-from-viewport-center formula as the
+     generic [data-parallax] elements elsewhere) layered on top. The globe
+     (disc, orbit rings and stat badges together, via #globeWrap) drifts
+     vertically on its own as the section scrolls, decoupled from the text
+     column beside it — they're normally NOT vertically aligned. Moving the
+     mouse toward the section's vertical center cancels the section-scroll
+     drift (not the parallax term), so the globe settles back into alignment
+     with the content exactly when the cursor "centers" the two columns.
      ========================================================================== -->
 <script>
 (function () {
@@ -1055,13 +1057,34 @@
 
   const SCROLL_RANGE = 60; // px of independent drift, peak-to-peak, across the section's scroll
   const MOUSE_RADIUS = 220; // px from the section's vertical center where centering fully fades out
+  const PARALLAX_SPEED = 0.12; // soft, always-on parallax rate (same formula used site-wide)
 
   let scrollOffset = 0;
   let mouseFactor = 1; // 1 = drift fully applied, 0 = cancelled (globe centered with content)
+  let parallaxY = 0;
+  let ticking = false;
 
   function apply() {
-    globe.style.transform = `translateX(-100px) translateY(${(scrollOffset * mouseFactor).toFixed(2)}px)`;
+    globe.style.transform = `translateX(-100px) translateY(${(scrollOffset * mouseFactor + parallaxY).toFixed(2)}px)`;
   }
+
+  function updateParallax() {
+    const vh = window.innerHeight;
+    const rect = globe.getBoundingClientRect();
+    const centerDelta = (rect.top + rect.height / 2) - vh / 2;
+    parallaxY = centerDelta * -PARALLAX_SPEED;
+    apply();
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  updateParallax();
 
   ScrollTrigger.create({
     trigger: section,
