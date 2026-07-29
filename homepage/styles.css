@@ -479,8 +479,8 @@ h1 span, h2 span, h3 span { white-space: pre; }
   flex-wrap: wrap;
 }
 .stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
-.stat-item .big-number { color: var(--brand-secondary); font-size: 42px; font-weight: 600; white-space: nowrap; }
-.stat-item .big-number .unit { font-size: 26px; }
+.stat-item .big-number { color: var(--brand-secondary); font-size: 56px; font-weight: 700; white-space: nowrap; }
+.stat-item .big-number .unit { font-size: 32px; }
 .stat-item .stat-label { font-size: 18px; color: var(--brand-primary); }
 
 /* ==========================================================================
@@ -537,7 +537,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
    Global Presence
    ========================================================================== */
 .global-presence-section { padding-top: 192px; }
-.global-presence-section .container { justify-content: space-between; gap: 110px; }
+.global-presence-section .container { justify-content: space-between; gap: 64px; }
 
 .globe-wrap {
   position: relative;
