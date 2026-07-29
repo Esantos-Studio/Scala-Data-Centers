@@ -314,7 +314,7 @@ p { margin: 0; }
 .hero-section { padding: 14px 4px 4px; }
 .hero-card {
   position: relative;
-  height: 680px;
+  height: 600px;
   background: var(--brand-primary);
   border-radius: var(--radius-l);
   overflow: hidden;
@@ -453,7 +453,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
    Solutions
    ========================================================================== */
 .solutions-section { padding-top: 148px; }
-.solutions-section .container { gap: 96px; }
+.solutions-section .container { gap: 154px; }
 .solutions-illustration { position: relative; width: 420px; height: 544px; flex-shrink: 0; }
 .solutions-illustration .photo-frame {
   position: absolute;
@@ -467,7 +467,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .solutions-illustration .pirula-left { left: -6px; top: 160px; width: 127px; height: 442px; }
 .solutions-illustration .pirula-right { right: -44px; top: 40px; width: 64px; height: 270px; }
 
-.solutions-content, .global-presence-content { flex: none; width: 628px; display: flex; flex-direction: column; gap: 24px; }
+.solutions-content, .global-presence-content { flex: none; width: 570px; display: flex; flex-direction: column; gap: 24px; }
 .solutions-heading-block, .global-presence-text-block { display: flex; flex-direction: column; gap: 16px; }
 .solutions-heading-block h2 span, .global-presence-text-block h2 span { color: var(--brand-secondary); }
 .solutions-body { display: flex; flex-direction: column; gap: 32px; }
@@ -493,7 +493,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
    Global Presence
    ========================================================================== */
 .global-presence-section { padding-top: 192px; }
-.global-presence-section .container { justify-content: space-between; gap: 92px; }
+.global-presence-section .container { justify-content: space-between; gap: 150px; }
 
 .globe-wrap {
   position: relative;
@@ -636,7 +636,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .features-section { padding: 112px 88px 88px; position: relative; }
 .features-section .container { max-width: 1216px; margin: 0 auto; position: relative; z-index: 1; }
 
-.features-tabs { display: flex; align-items: flex-start; gap: 92px; }
+.features-tabs { display: flex; align-items: flex-start; gap: 150px; }
 .features-tabs-visual { width: 420px; flex-shrink: 0; }
 
 .feature-block-illustration { position: relative; width: 420px; }
@@ -660,7 +660,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .feature-block-illustration .pirula-left { left: -30px; top: -10px; width: 129px; height: 370px; }
 .feature-block-illustration .pirula-right { right: -50px; top: 265px; width: 116px; height: 377px; }
 
-.features-tabs-list { flex: none; width: 628px; display: flex; flex-direction: column; }
+.features-tabs-list { flex: none; width: 570px; display: flex; flex-direction: column; }
 .features-tab {
   min-height: 55vh;
   display: flex;
