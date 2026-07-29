@@ -280,10 +280,10 @@
     <img class="bg-pirula bg-pirula-solutions" data-parallax="0.08" src="Assets/pirulas-bkg-01.svg" alt="">
     <div class="container">
       <div class="solutions-illustration">
-        <img class="pirula pirula-green" src="Assets/Rectangle 207.svg" alt="">
+        <img class="pirula pirula-green" data-parallax="-0.45" src="Assets/Rectangle 207.svg" alt="">
         <div class="photo-frame reveal-fade"><img src="Assets/img-pirula-solucoes.jpg" alt="Executivo Scala Data Centers"></div>
-        <img class="pirula pirula-left" src="Assets/pirulas-left-solucoes.svg" alt="">
-        <img class="pirula pirula-right" src="Assets/pirulas-direita-solucoes.svg" alt="">
+        <img class="pirula pirula-left" data-parallax="-0.35" src="Assets/pirulas-left-solucoes.svg" alt="">
+        <img class="pirula pirula-right" data-parallax="-0.55" src="Assets/pirulas-direita-solucoes.svg" alt="">
       </div>
       <div class="solutions-content">
         <div class="solutions-heading-block">
@@ -1102,44 +1102,6 @@
     onEnter: (batch) => gsap.to(batch, {
       opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12, overwrite: true
     })
-  });
-})();
-</script>
-
-<!-- ==========================================================================
-     Solutions pirulas — scroll-linked rise, no fade. Each starts below its
-     normal spot by its own distance (right rises further than left, per the
-     reference "Inicial/Final" mockup) and rises into place as the section
-     scrolls into view, scrubbed 1:1 to scroll position (no opacity change).
-     ========================================================================== -->
-<script>
-(function () {
-  if (!window.gsap || !window.ScrollTrigger) return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  const left = document.querySelector('.solutions-illustration .pirula-left');
-  const right = document.querySelector('.solutions-illustration .pirula-right');
-  const green = document.querySelector('.solutions-illustration .pirula-green');
-  if (!left || !right) return;
-
-  // Distance each pirula starts below its rest position, measured off the
-  // "Inicial"/"Final" reference mockup — left and right rise by different
-  // amounts, both purely vertically. All three end at the same y:0, so one
-  // tween (and one ScrollTrigger) can drive all of them from their own
-  // individually-set starting offsets.
-  gsap.set(left, { y: 140 });
-  gsap.set(right, { y: 240 });
-  if (green) gsap.set(green, { y: 140 });
-
-  gsap.to([left, right, green].filter(Boolean), {
-    y: 0,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.solutions-section',
-      start: 'top bottom',
-      end: 'top 40%',
-      scrub: true
-    }
   });
 })();
 </script>
