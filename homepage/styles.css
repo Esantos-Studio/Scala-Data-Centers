@@ -926,17 +926,6 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .cta-banner-content { position: relative; z-index: 1; }
 
 /* ==========================================================================
-   Large screens — widen the boxed content container past its normal 1216px
-   cap once there's room, with a 32px lateral gutter of its own. Hero, CTA
-   banner and Footer are excluded on purpose: they stay fluid (see their own
-   rules) at every resolution instead of ever boxing to this width.
-   ========================================================================== */
-@media (min-width: 1440px) {
-  .container { max-width: 1440px; padding: 0 32px; }
-  .blog-section { max-width: 1440px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
-}
-
-/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1100px) {
