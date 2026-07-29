@@ -1058,7 +1058,7 @@
   let mouseFactor = 1; // 1 = drift fully applied, 0 = cancelled (globe centered with content)
 
   function apply() {
-    globe.style.transform = `translateY(${(scrollOffset * mouseFactor).toFixed(2)}px)`;
+    globe.style.transform = `translateX(-100px) translateY(${(scrollOffset * mouseFactor).toFixed(2)}px)`;
   }
 
   ScrollTrigger.create({
@@ -1137,8 +1137,8 @@
     ease: 'none',
     scrollTrigger: {
       trigger: '.solutions-section',
-      start: 0,
-      end: 500,
+      start: 'top bottom',
+      end: 'top 40%',
       scrub: true
     }
   });

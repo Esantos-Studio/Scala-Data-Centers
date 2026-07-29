@@ -728,7 +728,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 /* ==========================================================================
    Blog
    ========================================================================== */
-.blog-section { padding: 92px 90px 88px; }
+.blog-section { padding: 92px 90px 88px; margin-top: 100px; }
 .blog-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
 .blog-header-text { display: flex; flex-direction: column; gap: 16px; max-width: 718px; }
 .blog-cards-grid { display: flex; gap: 8px; align-items: stretch; }
@@ -746,9 +746,9 @@ h1 span, h2 span, h3 span { white-space: pre; }
   z-index: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
 }
-.blog-card:hover .blog-card-bg { transform: scale(1.08); }
+.blog-card:hover .blog-card-bg { transform: scale(1.04); }
 .blog-card::after {
   content: '';
   position: absolute; inset: 0;
@@ -797,7 +797,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  transition: max-height 0.45s ease, opacity 0.35s ease;
+  transition: max-height 0.6s cubic-bezier(0.25,0.8,0.25,1), opacity 0.5s ease;
 }
 .blog-card:hover .blog-card-more { max-height: 260px; opacity: 1; }
 .blog-card-meta { display: flex; align-items: center; gap: 10px; }
