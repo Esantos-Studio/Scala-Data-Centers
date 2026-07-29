@@ -322,7 +322,7 @@ p { margin: 0; }
 .hero-section { padding: 14px 4px 4px; }
 .hero-card {
   position: relative;
-  height: 600px;
+  height: 620px;
   background: var(--brand-primary);
   border-radius: var(--radius-l);
   overflow: hidden;
@@ -537,7 +537,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
    Global Presence
    ========================================================================== */
 .global-presence-section { padding-top: 192px; }
-.global-presence-section .container { justify-content: space-between; gap: 150px; }
+.global-presence-section .container { justify-content: space-between; gap: 110px; }
 
 .globe-wrap {
   position: relative;
@@ -667,9 +667,9 @@ h1 span, h2 span, h3 span { white-space: pre; }
   line-height: 21px;
   color: #0a6175;
 }
-.presence-badge-1 { left: calc(50% - 255px); top: calc(50% - 261px); }
-.presence-badge-2 { left: calc(50% - 78px); top: calc(50% - 314px); }
-.presence-badge-3 { left: calc(50% + 102px); top: calc(50% - 200px); }
+.presence-badge-1 { left: calc(50% - 233px); top: calc(50% - 212px); }
+.presence-badge-2 { left: calc(50% - 160px); top: calc(50% - 17px); }
+.presence-badge-3 { left: calc(50% + 35px); top: calc(50% - 249px); }
 
 /* ==========================================================================
    Features — vertical scroll-driven tabs (Inovação / Sustentabilidade).
