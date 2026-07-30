@@ -857,7 +857,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .footer-inner {
   background: var(--bg-footer);
   border-radius: var(--radius-m);
-  padding: 88px 64px 24px;
+  padding: 88px 0 24px;
   position: relative;
   overflow: hidden;
 }
