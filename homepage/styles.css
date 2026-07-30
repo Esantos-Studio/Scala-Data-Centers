@@ -536,7 +536,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
    Global Presence
    ========================================================================== */
 .global-presence-section { padding-top: 192px; }
-.global-presence-section .container { justify-content: space-between; gap: 64px; }
+.global-presence-section .container { justify-content: space-between; gap: 64px; position: relative; z-index: 1; }
 
 .globe-wrap {
   position: relative;
@@ -915,12 +915,15 @@ h1 span, h2 span, h3 span { white-space: pre; }
 [data-parallax] { will-change: transform; }
 
 /* Decorative outline pill shapes scattered behind section content — purely
-   ambient, never interactive. */
+   ambient, never interactive. Positions matched to the Figma source
+   (node 15797:26730): a single pill+circle pokes above the top-right of
+   Solutions, a taller double pill pokes below the bottom-left of Global
+   Presence, and a third sits off the bottom-right edge of Features. */
 .bg-pirula { position: absolute; z-index: 0; opacity: 0.5; pointer-events: none; }
-.bg-pirula-solutions { right: 40px; top: 60px; width: 105px; }
-.bg-pirula-features { left: -40px; bottom: -60px; width: 166px; }
-.bg-pirula-cta { right: 60px; top: -80px; width: 157px; }
-.solutions-section, .features-section, .cta-banner-section { position: relative; }
+.bg-pirula-solutions { right: 22px; top: -40px; width: 105px; }
+.bg-pirula-globalpresence { left: 29px; bottom: -117px; width: 149px; }
+.bg-pirula-features { right: -112px; bottom: -64px; width: 166px; }
+.solutions-section, .features-section, .cta-banner-section, .global-presence-section { position: relative; }
 .solutions-section .container,
 .cta-banner-content { position: relative; z-index: 1; }
 
