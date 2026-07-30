@@ -352,18 +352,6 @@ p { margin: 0; }
   object-fit: cover;
   z-index: 0;
 }
-/* Past 1560px the fixed 620px hero height starts stretching slides 2 and 3
-   (static photos) into an overly wide, thin crop — scale their displayed
-   height back down proportionally as the viewport keeps growing, centered
-   in the card, instead of letting them cover it edge to edge. */
-@media (min-width: 1560px) {
-  .hero-slide[data-slide-index="1"] .hero-slide-bg,
-  .hero-slide[data-slide-index="2"] .hero-slide-bg {
-    top: 50%;
-    height: max(420px, calc(620px - (100vw - 1560px) * 0.3));
-    transform: translateY(-50%);
-  }
-}
 .hero-overlay {
   position: absolute;
   inset: 0;
