@@ -191,16 +191,19 @@ p { margin: 0; }
   align-items: center;
   justify-content: space-between;
   background: #fff;
-  border: 1px solid rgba(179,228,238,0.2);
+  border: 1px solid transparent;
   border-radius: var(--radius-m);
   padding: 16px 24px;
   z-index: 2;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
-/* Shadow only appears once the header is actually pinned by its own
+/* Border + shadow only appear once the header is actually pinned by its own
    position:sticky (see the headerSentinel + IntersectionObserver script) —
-   at rest, at the top of the page, it sits flush with no shadow. */
-.site-header.is-stuck { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+   at rest, at the top of the page, it sits flush with no border/shadow. */
+.site-header.is-stuck {
+  border-color: rgba(179,228,238,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
 /* When any dropdown is open, flatten the header's bottom corners so it
    fuses seamlessly with the panel glued directly beneath it. */
 .site-header.dropdown-open {
@@ -348,6 +351,18 @@ p { margin: 0; }
   height: 100%;
   object-fit: cover;
   z-index: 0;
+}
+/* Past 1560px the fixed 620px hero height starts stretching slides 2 and 3
+   (static photos) into an overly wide, thin crop — scale their displayed
+   height back down proportionally as the viewport keeps growing, centered
+   in the card, instead of letting them cover it edge to edge. */
+@media (min-width: 1560px) {
+  .hero-slide[data-slide-index="1"] .hero-slide-bg,
+  .hero-slide[data-slide-index="2"] .hero-slide-bg {
+    top: 50%;
+    height: max(420px, calc(620px - (100vw - 1560px) * 0.3));
+    transform: translateY(-50%);
+  }
 }
 .hero-overlay {
   position: absolute;
@@ -728,7 +743,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 /* ==========================================================================
    Blog
    ========================================================================== */
-.blog-section { padding: 92px 90px 88px; margin-top: 100px; }
+.blog-section { padding: 92px 0 88px; margin-top: 100px; }
 .blog-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
 .blog-header-text { display: flex; flex-direction: column; gap: 16px; max-width: 718px; }
 .blog-cards-grid { display: flex; gap: 8px; align-items: stretch; }
