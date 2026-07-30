@@ -8,8 +8,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>#passwordGate{position:fixed;inset:0;z-index:99999;background:#01032c;display:flex;}</style>
 </head>
 <body>
+
+<!-- ==========================================================================
+     Password gate — simple client-side access lock. Not real security (the
+     password lives in this file's source), just a soft barrier so the page
+     isn't casually browsable while in review. Unlocking is remembered in
+     localStorage so returning visitors on the same browser aren't re-prompted.
+     ========================================================================== -->
+<div id="passwordGate">
+  <form id="passwordGateForm" class="password-gate-card" autocomplete="off">
+    <img src="Assets/logo-white-footer.svg" alt="Scala Data Centers" class="password-gate-logo">
+    <h1>Página protegida</h1>
+    <p>Digite a senha de acesso para continuar.</p>
+    <input type="password" id="passwordGateInput" placeholder="Senha" autofocus>
+    <button type="submit" class="btn-pill">Entrar<span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
+    <p class="password-gate-error" id="passwordGateError" hidden>Senha incorreta. Tente novamente.</p>
+  </form>
+</div>
+<script>
+(function () {
+  var PASSWORD = 'sc@l@2026';
+  var STORAGE_KEY = 'scalaGateUnlocked';
+  var gate = document.getElementById('passwordGate');
+  var form = document.getElementById('passwordGateForm');
+  var input = document.getElementById('passwordGateInput');
+  var error = document.getElementById('passwordGateError');
+
+  if (localStorage.getItem(STORAGE_KEY) === '1') {
+    gate.style.display = 'none';
+  } else {
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value === PASSWORD) {
+      localStorage.setItem(STORAGE_KEY, '1');
+      gate.style.display = 'none';
+      document.documentElement.style.overflow = '';
+    } else {
+      error.hidden = false;
+      input.value = '';
+      input.focus();
+    }
+  });
+})();
+</script>
 
 <!-- Icon sprite (Untitled UI style icons used across the design) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
