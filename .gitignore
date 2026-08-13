@@ -11,3 +11,5 @@ files.zip
 *.zip
 Interações/
 .claude/
+.vercel
+.env*

@@ -475,10 +475,10 @@ h1 span, h2 span, h3 span { white-space: pre; }
 .stats-card {
   display: flex;
   justify-content: center;
-  gap: 64px;
-  flex-wrap: wrap;
+  gap: clamp(16px, 4vw, 64px);
+  flex-wrap: nowrap;
 }
-.stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.stat-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; flex-shrink: 1; min-width: 0; }
 .stat-item .big-number { color: var(--brand-secondary); font-size: 56px; font-weight: 700; white-space: nowrap; }
 .stat-item .big-number .unit { font-size: 32px; }
 .stat-item .stat-label { font-size: 18px; color: var(--brand-primary); }
@@ -1050,4 +1050,6 @@ h1 span, h2 span, h3 span { white-space: pre; }
   .feature-block-illustration { margin: 0 auto; position: static !important; transform: none !important; }
   .hero-content h1 { font-size: 36px; }
   .footer-columns { flex-direction: column; }
+  .stats-card { flex-wrap: wrap; row-gap: 32px; }
+  .stat-item { flex-shrink: 0; }
 }
