@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scala Data Centers — Liderando a Infraestrutura Digital Sustentável na América Latina</title>
+<title>Scala Data Centers | Plataforma de Infraestrutura Digital para IA e Nuvem na América Latina</title>
+<meta name="description" content="A Scala Data Centers é uma plataforma de desenvolvimento de infraestrutura digital preparada para IA, nuvem e aplicações de missão crítica na América Latina, com data centers hyperscale, energia renovável e alta disponibilidade.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -28,6 +29,51 @@
     <p class="password-gate-error" id="passwordGateError" hidden>Senha incorreta. Tente novamente.</p>
   </form>
 </div>
+
+<!-- ==========================================================================
+     Cookies bar — simple consent notice. Accepting or refusing both dismiss
+     it and are remembered in localStorage so returning visitors aren't
+     re-prompted every visit.
+     ========================================================================== -->
+<div class="cookies-bar" id="cookiesBar" role="dialog" aria-label="Aviso de cookies">
+  <div class="cookies-bar-header">
+    <div class="cookies-bar-icon">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 1010 10 4 4 0 01-4-4 4 4 0 01-4-4 4 4 0 01-2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="8.5" cy="12.5" r="1" fill="currentColor"/><circle cx="12" cy="16.5" r="1" fill="currentColor"/><circle cx="15.5" cy="11" r="1" fill="currentColor"/></svg>
+    </div>
+    <div class="cookies-bar-text">
+      <h3>Este site usa cookies</h3>
+      <p>Ao clicar em &quot;Aceitar todos os cookies&quot;, você consente com o armazenamento de cookies para navegação no site, análise de uso e marketing. Consulte nossa Política de Privacidade para mais detalhes.</p>
+    </div>
+  </div>
+  <div class="cookies-bar-footer">
+    <button type="button" class="btn-pill-outline" id="cookiesBarRefuse">Recusar</button>
+    <button type="button" class="btn-pill-dark" id="cookiesBarAccept">Aceitar todos os cookies</button>
+    <button type="button" class="cookies-bar-close" id="cookiesBarClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</div>
+<script>
+(function () {
+  var STORAGE_KEY = 'scalaCookieConsent';
+  var bar = document.getElementById('cookiesBar');
+  if (!bar) return;
+
+  if (localStorage.getItem(STORAGE_KEY)) return;
+
+  function show() { requestAnimationFrame(function () { bar.classList.add('is-visible'); }); }
+  function dismiss(consent) {
+    localStorage.setItem(STORAGE_KEY, consent);
+    bar.classList.remove('is-visible');
+  }
+
+  show();
+  document.getElementById('cookiesBarAccept').addEventListener('click', function () { dismiss('accepted'); });
+  document.getElementById('cookiesBarRefuse').addEventListener('click', function () { dismiss('refused'); });
+  document.getElementById('cookiesBarClose').addEventListener('click', function () { dismiss('refused'); });
+})();
+</script>
+
 <script>
 (function () {
   var PASSWORD = 'sc@l@2026';
@@ -245,9 +291,9 @@
         <div class="hero-ellipse hero-ellipse-2"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1>Liderando a Infraestrutura Digital Sustentável na América Latina</h1>
+          <h1>Infraestrutura digital preparada para o futuro da IA</h1>
           <button class="btn-pill">
-            Porque Scala
+            Conheça a Scala
             <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span>
           </button>
         </div>
@@ -256,15 +302,15 @@
       <div class="hero-slide" data-slide-index="1">
         <picture>
           <source media="(min-width: 1560px)" srcset="Assets/hero-image-slide2-wide.png">
-          <img class="hero-slide-bg" src="Assets/hero-image-slide2.png" alt="Executivo Scala Data Centers com tablet">
+          <img class="hero-slide-bg" src="Assets/hero-image-slide2.png" alt="Relatório de Sustentabilidade Scala Data Centers">
         </picture>
         <div class="hero-ellipse hero-ellipse-1"></div>
         <div class="hero-ellipse hero-ellipse-2"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1>Nascemos dentro de uma <span>estrutura profissional</span> de investimento</h1>
+          <h1>Relatório de Sustentabilidade</h1>
           <button class="btn-pill">
-            Saiba mais sobre experiência global
+            Acesse o relatório 2025
             <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span>
           </button>
         </div>
@@ -273,15 +319,15 @@
       <div class="hero-slide" data-slide-index="2">
         <picture>
           <source media="(min-width: 1560px)" srcset="Assets/hero-image-slide3-wide.png">
-          <img class="hero-slide-bg" src="Assets/hero-image-slide3.png" alt="Profissional Scala Data Centers em campo">
+          <img class="hero-slide-bg" src="Assets/hero-image-slide3.png" alt="Scala AI City">
         </picture>
         <div class="hero-ellipse hero-ellipse-1"></div>
         <div class="hero-ellipse hero-ellipse-2"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <h1>Para nós, <span>sustentabilidade</span> não é uma meta e sim <span>um princípio</span></h1>
+          <h1>Uma nova geração de infraestrutura dedicada à Inteligência Artificial</h1>
           <button class="btn-pill">
-            Conheça nosso Programa ESG
+            Conheça a Scala AI City
             <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span>
           </button>
         </div>
@@ -308,19 +354,23 @@
       <div class="stats-card">
         <div class="stat-item reveal-fade">
           <p class="big-number"><span class="count-value" data-count-to="7.1" data-decimals="1" data-decimal-comma="false">0.0</span><span class="unit">GW</span></p>
-          <p class="stat-label">de energia garantida</p>
+          <p class="stat-label">de capacidade total</p>
         </div>
         <div class="stat-item reveal-fade">
-          <p class="big-number"><span class="count-value" data-count-to="200">0</span><span class="unit">MV</span></p>
-          <p class="stat-label">em capacidade reservada</p>
+          <p class="big-number">+<span class="count-value" data-count-to="160">0</span><span class="unit">MW</span></p>
+          <p class="stat-label">operacionais ou vendidos</p>
         </div>
         <div class="stat-item reveal-fade">
           <p class="big-number"><span class="count-value" data-count-to="100">0</span><span class="unit">%</span></p>
-          <p class="stat-label">energia renovável e certificada</p>
+          <p class="stat-label">de energia renovável</p>
         </div>
         <div class="stat-item reveal-fade">
-          <p class="big-number"><span class="unit">R$</span><span class="count-value" data-count-to="1.2" data-decimals="1" data-decimal-comma="true">0,0</span><span class="unit">BI</span></p>
-          <p class="stat-label">em investimentos</p>
+          <p class="big-number">+<span class="unit">R$</span><span class="count-value" data-count-to="12">0</span><span class="unit">BI</span></p>
+          <p class="stat-label">já investidos</p>
+        </div>
+        <div class="stat-item reveal-fade">
+          <p class="big-number">+<span class="count-value" data-count-to="12">0</span><span class="unit">M</span></p>
+          <p class="stat-label">de m² de propriedades<br>na América Latina</p>
         </div>
       </div>
     </div>
@@ -334,7 +384,7 @@
     <div class="container">
       <div class="solutions-illustration">
         <img class="pirula pirula-green" data-parallax="-0.45" src="Assets/Rectangle 207.svg" alt="">
-        <div class="photo-frame reveal-fade"><img src="Assets/img-pirula-solucoes.jpg" alt="Executivo Scala Data Centers"></div>
+        <div class="photo-frame reveal-fade"><img src="Assets/solucoes-img-01.png" alt="Data center Scala Data Centers"></div>
         <img class="pirula pirula-left" data-parallax="-0.35" src="Assets/pirulas-left-solucoes.svg" alt="">
         <img class="pirula pirula-right" data-parallax="-0.55" src="Assets/pirulas-direita-solucoes.svg" alt="">
       </div>
@@ -344,22 +394,22 @@
             <img src="Assets/pontos-eybrow.svg" alt="">
             <span>Soluções</span>
           </div>
-          <h2>Da <span>Colocation</span> ao <span>Hyperscale</span>, encontre a solução certa para o seu momento</h2>
+          <h2><span>Soluções escaláveis</span> para operações críticas</h2>
         </div>
         <div class="solutions-body">
           <div class="cards-solutions">
             <div class="solution-card reveal-fade">
               <div class="solution-card-text">
-                <h4>Conectividade &amp; Colocation</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+                <h4>Colocation e Conectividade</h4>
+                <p>Oferecemos modelos de implantação e operação que vão de Full Colocation a Build-to-Suit e Triple Net Lease, adaptando a infraestrutura às necessidades de cada cliente.</p>
               </div>
               <button class="btn-arrow-small"><svg fill="none"><use href="#icon-arrow-right"/></svg></button>
             </div>
             <hr class="solutions-divider">
             <div class="solution-card reveal-fade">
               <div class="solution-card-text">
-                <h4>Qualidade, Disponibilidade e Segurança</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+                <h4>Estabilidade, Qualidade, Disponibilidade e Segurança</h4>
+                <p>Com energia 100% limpa e renovável, infraestrutura própria e arquitetura de alta densidade, nossos data centers apoiam cargas de trabalho críticas com estabilidade, segurança e capacidade para crescer no longo prazo.</p>
               </div>
               <button class="btn-arrow-small"><svg fill="none"><use href="#icon-arrow-right"/></svg></button>
             </div>
@@ -383,10 +433,10 @@
         <div class="global-presence-text-block">
           <div class="eyebrow reveal-fade">
             <img src="Assets/pontos-eybrow.svg" alt="">
-            <span>Presença Geográfica e Dados Técnicos</span>
+            <span>Presença estratégica na América Latina</span>
           </div>
-          <h2>Data Centers</h2>
-          <p class="paragraph-l fade-after-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque. Aenean eget dolor commodo, finibus leo vestibulum, posuere felis.</p>
+          <h2>Presença estratégica para <span>habilitar o futuro</span></h2>
+          <p class="paragraph-l fade-after-title">Com presença nos principais mercados da América Latina, desenvolvemos uma plataforma de infraestrutura digital estrategicamente localizada, próxima a hubs de nuvem, cabos submarinos e ecossistemas de interconexão da região. Em operação, construção e desenvolvimento, nossos data centers combinam excelência operacional, alta densidade e energia renovável para acompanhar a evolução dos negócios dos nossos clientes.</p>
         </div>
         <button class="btn-pill">
           Explorar Data Centers
@@ -414,11 +464,11 @@
         </div>
         <div class="presence-badge presence-badge-2 badge-intro parallax-hold" data-parallax="0.11">
           <p class="presence-badge-number"><span class="count-value" data-count-to="4">0</span></p>
-          <p class="presence-badge-label">países da<br>América Latina</p>
+          <p class="presence-badge-label">países<br>na América Latina</p>
         </div>
         <div class="presence-badge presence-badge-3 badge-intro parallax-hold" data-parallax="0.06">
-          <p class="presence-badge-number">+<span class="count-value" data-count-to="11.8" data-decimals="1" data-decimal-comma="true">0,0</span>M</p>
-          <p class="presence-badge-label">m² em 55 propriedades</p>
+          <p class="presence-badge-number">+<span class="count-value" data-count-to="12">0</span>M</p>
+          <p class="presence-badge-label">m² em propriedades</p>
         </div>
       </div>
     </div>
@@ -437,8 +487,8 @@
         <div class="features-tabs-visual">
           <div class="feature-block-illustration">
             <div class="photo-frame">
-              <img class="features-tab-img is-active" data-tab="inovacao" src="Assets/imagem-inovacao.jpg" alt="Colaborador Scala Data Centers em obra">
-              <img class="features-tab-img" data-tab="sustentabilidade" src="Assets/img-inovacao.png" alt="Colaboradora Scala Data Centers em obra">
+              <img class="features-tab-img is-active" data-tab="inovacao" src="Assets/imagem-inovacao-01.png" alt="Equipe Scala Data Centers monitorando operações">
+              <img class="features-tab-img" data-tab="sustentabilidade" src="Assets/imagem-inovacao-01.png" alt="Equipe Scala Data Centers monitorando operações">
             </div>
             <img class="pirula pirula-left" src="Assets/pirulas-left-inovacao-sustentabilidade.svg" alt="">
             <img class="pirula pirula-right" src="Assets/pirulas-direita-inovacao-solucoes.svg" alt="">
@@ -448,21 +498,21 @@
           <div class="features-tab is-active" data-tab="inovacao">
             <div class="features-tab-header">
               <div class="eyebrow"><img src="Assets/pontos-eybrow.svg" alt=""><span>Inovação</span></div>
-              <h3>Especialistas na <span>infraestrutura do futuro</span></h3>
+              <h3><span>Inteligência aplicada</span> em cada camada</h3>
             </div>
             <div class="features-tab-body">
-              <p class="paragraph-l fade-after-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque. Aenean eget dolor commodo, finibus leo vestibulum, posuere felis.</p>
-              <button class="btn-pill">Conheça nossas inovações <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
+              <p class="paragraph-l fade-after-title">Do design à operação, combinamos engenharia, tecnologia e excelência operacional para transformar inovação em infraestrutura de alto desempenho. O resultado é uma plataforma mais eficiente, estável, e capaz de acelerar entregas com previsibilidade.</p>
+              <button class="btn-pill">Projetos em destaque <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
             </div>
           </div>
           <div class="features-tab" data-tab="sustentabilidade">
             <div class="features-tab-header">
               <div class="eyebrow"><img src="Assets/pontos-eybrow.svg" alt=""><span>Sustentabilidade</span></div>
-              <h3>Para nós, <span>sustentabilidade é um princípio</span></h3>
+              <h3>Sustentabilidade como <span>princípio</span></h3>
             </div>
             <div class="features-tab-body">
-              <p class="paragraph-l fade-after-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque. Aenean eget dolor commodo, finibus leo vestibulum, posuere felis.</p>
-              <button class="btn-pill">Explore nossas iniciativas sustentáveis <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
+              <p class="paragraph-l fade-after-title">A sustentabilidade faz parte da forma como planejamos, construímos e operamos nossa infraestrutura. Guiados por ambição climática, metas estruturadas e resultados concretos, promovemos o uso eficiente de recursos, responsabilidade social e uma governança sólida para gerar valor de longo prazo para clientes, comunidades e sociedade.</p>
+              <button class="btn-pill">Ver Programa ESG <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
             </div>
           </div>
         </div>
@@ -478,8 +528,8 @@
     <div class="blog-header">
       <div class="blog-header-text">
         <div class="eyebrow reveal-fade"><img src="Assets/pontos-eybrow.svg" alt=""><span>Notícias e Mídia</span></div>
-        <h2>Perspectivas e Insights</h2>
-        <p class="paragraph-l fade-after-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim elit, pharetra at erat at, egestas dignissim neque.</p>
+        <h2>Notícias e Insights</h2>
+        <p class="paragraph-l fade-after-title">Acompanhe notícias, estudos, reconhecimentos e movimentos estratégicos que refletem a atuação da Scala no avanço da infraestrutura digital da América Latina.</p>
       </div>
       <button class="btn-pill">Ver todos os artigos <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
     </div>
@@ -543,9 +593,10 @@
     <div class="cta-banner-card">
       <div class="container">
         <div class="cta-banner-content reveal-fade">
-          <div class="eyebrow"><img src="Assets/pontos-eybrow.svg" alt=""><span>Entre em contato</span></div>
-          <h2>Há 6 anos habilitando a infraestrutura digital da América Latina</h2>
-          <button class="btn-pill">Conheça sobre a Cultura e História Scala <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
+          <div class="eyebrow"><img src="Assets/pontos-eybrow.svg" alt=""><span>Nossa trajetória</span></div>
+          <h2>Há 6 anos, habilitando o futuro</h2>
+          <p class="paragraph-l">Com comprometimento e excelência, consolidamos uma plataforma de infraestrutura digital preparada para apoiar a evolução da inteligência artificial, da nuvem e da economia digital na América Latina.</p>
+          <button class="btn-pill">Sobre a Scala <span class="icon-circle"><svg fill="none"><use href="#icon-arrow-right"/></svg></span></button>
         </div>
       </div>
     </div>
@@ -563,7 +614,7 @@
       <div class="footer-brand">
         <div style="display:flex; flex-direction:column; gap:24px;">
           <img class="logo" src="Assets/logo-white-footer.svg" alt="Scala Data Centers">
-          <p>Assumimos a responsabilidade de apoiar os mercados da América Latina na construção e operação da infraestrutura necessária para a evolução dos países a um novo patamar de digitalização.</p>
+          <p>A Scala Data Centers é líder em infraestrutura digital hyperscale na América Latina, com soluções escaláveis, confiáveis e sustentáveis para habilitar o futuro digital.</p>
         </div>
         <div class="social-icons">
           <svg viewBox="0 0 24 24" fill="#fff"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18v-8.4H5.67V18h2.67zM7 8.48c.93 0 1.51-.61 1.51-1.38-.02-.79-.58-1.39-1.49-1.39-.91 0-1.51.6-1.51 1.39 0 .77.58 1.38 1.47 1.38H7zm11 9.52v-4.83c0-2.59-1.38-3.79-3.23-3.79-1.49 0-2.15.82-2.52 1.39V9.6h-2.67s.03.62 0 8.4h2.67v-4.69c0-.25.02-.5.09-.68.2-.5.65-1.02 1.42-1.02.99 0 1.39.76 1.39 1.86V18H18z"/></svg>
