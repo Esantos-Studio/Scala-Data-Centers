@@ -524,10 +524,10 @@ h1 span, h2 span, h3 span { white-space: pre; }
   margin-left: -16px;
   border-radius: var(--radius-m);
   cursor: pointer;
-  transition: filter 0.2s ease, gap 0.2s ease;
+  transition: filter 0.2s ease;
 }
-.solution-card:hover { filter: drop-shadow(0 0 22px rgba(15,139,168,0.1)); gap: 32px; }
-.solution-card .solution-card-text { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.solution-card:hover { filter: drop-shadow(0 0 22px rgba(15,139,168,0.1)); }
+.solution-card .solution-card-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
 .solution-card h4 { font-size: 20px; font-weight: 600; color: var(--brand-primary); transition: color 0.2s ease; }
 .solution-card:hover h4 { color: var(--brand-secondary-text-hover); }
 .solution-card p { font-size: 16px; line-height: 24px; color: var(--text-body); }
