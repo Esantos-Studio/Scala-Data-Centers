@@ -861,17 +861,16 @@
     // SplitText's own word wrapper), so the line can only break BETWEEN
     // words instead of wrapping mid-word.
     const split = new SplitText(el, { type: 'chars,words,lines' });
-    gsap.set(split.chars, { opacity: 0, y: 20, filter: 'blur(10px)' });
+    gsap.set(split.chars, { opacity: 0, x: 20 });
     return split;
   }
   function reveal(split, onComplete) {
     if (!split) return;
-    // Matches magicui's <TextAnimate animation="blurInUp" by="character" once />
+    // Matches magicui's <TextAnimate animation="slideLeft" by="character" once />
     // (magicui.design/docs/components/text-animate).
     gsap.to(split.chars, {
-      y: 0,
+      x: 0,
       opacity: 1,
-      filter: 'blur(0px)',
       duration: 0.3,
       ease: 'power1.out',
       stagger: 0.03,

@@ -88,6 +88,8 @@ p { margin: 0; }
 
 /* Buttons */
 .btn-pill {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 16px;
@@ -101,6 +103,27 @@ p { margin: 0; }
   box-shadow: 0 1px 1px rgba(0,0,0,0.05);
   white-space: nowrap;
   transition: background 0.2s ease;
+}
+/* Shimmer sweep — same white diagonal line as magicui's ShimmerButton
+   (magicui.design/docs/components/shimmer-button), colors untouched. */
+.btn-pill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.85) 50%, transparent 70%);
+  transform: skewX(-20deg);
+  animation: btn-pill-shimmer 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btn-pill-shimmer {
+  0% { left: -60%; }
+  100% { left: 160%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-pill::after { animation: none; display: none; }
 }
 .btn-pill .icon-circle {
   display: flex;
