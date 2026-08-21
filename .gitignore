@@ -3,6 +3,7 @@ node_modules
 .DS_Store
 dist
 build
+.next
 
 # Internal working files — not part of the deployed site
 files/
