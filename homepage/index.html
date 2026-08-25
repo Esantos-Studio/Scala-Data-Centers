@@ -843,45 +843,32 @@
 </script>
 
 <!-- ==========================================================================
-     Titles — GSAP SplitText character reveal (gsap.com/text). The hero H1
-     replays every time its slide becomes active; every other heading plays
-     once, the first time it scrolls into view.
+     Titles — magicui "Blur In by Text" reveal (magicui.design/docs/components/
+     text-animate#blur-in-by-text): <TextAnimate animation="blurIn" by="text" />
+     — the whole heading blurs/fades in as one block (no per-word/character
+     stagger). The hero H1 replays every time its slide becomes active; every
+     other heading plays once, the first time it scrolls into view.
      ========================================================================== -->
 <script src="vendor/gsap.min.js"></script>
-<script src="vendor/SplitText.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script>
 (function () {
-  if (!window.gsap || !window.SplitText) return;
-  gsap.registerPlugin(SplitText);
+  const BLUR_DURATION = 300; // ms — matches TextAnimate's default `duration` prop
 
-  function prepare(el) {
-    // Same split type as the official "Characters" demo (chars,words,lines) —
-    // keeping 'words' in the mix groups each word's characters together (via
-    // SplitText's own word wrapper), so the line can only break BETWEEN
-    // words instead of wrapping mid-word.
-    const split = new SplitText(el, { type: 'chars,words,lines' });
-    gsap.set(split.chars, { opacity: 0, x: 20 });
-    return split;
-  }
-  function reveal(split, onComplete) {
-    if (!split) return;
-    // Matches magicui's <TextAnimate animation="slideLeft" by="character" once />
-    // (magicui.design/docs/components/text-animate).
-    gsap.to(split.chars, {
-      x: 0,
-      opacity: 1,
-      duration: 0.3,
-      ease: 'power1.out',
-      stagger: 0.03,
-      overwrite: true,
-      onComplete: onComplete
-    });
+  function reveal(el, onComplete) {
+    if (!el) return;
+    el.classList.add('blur-in-text');
+    el.classList.remove('is-visible');
+    // Force a reflow so re-adding 'is-visible' on an already-revealed element
+    // (hero slide replay) retriggers the CSS transition instead of no-op'ing.
+    void el.offsetWidth;
+    requestAnimationFrame(() => el.classList.add('is-visible'));
+    if (onComplete) setTimeout(onComplete, BLUR_DURATION);
   }
 
   // Finds the .fade-after-title sub-text that belongs with a given section
   // heading, so it can be told to reveal only once that heading's own
-  // SplitText animation has finished (never before or alongside it).
+  // blur-in animation has finished (never before or alongside it).
   function findSubtext(heading) {
     const globalPresence = heading.closest('.global-presence-text-block');
     if (globalPresence) return globalPresence.querySelector('.fade-after-title');
@@ -892,12 +879,12 @@
     return null;
   }
 
-  // Hero H1s — split every slide's heading up front, replay on activation.
+  // Hero H1s — replay on every slide activation.
   const carousel = document.getElementById('heroCarousel');
   if (carousel) {
-    const heroSplits = Array.from(carousel.querySelectorAll('.hero-slide h1')).map(prepare);
-    reveal(heroSplits[0]);
-    carousel.addEventListener('heroslidechange', (e) => reveal(heroSplits[e.detail.index]));
+    const heroHeadings = Array.from(carousel.querySelectorAll('.hero-slide h1'));
+    reveal(heroHeadings[0]);
+    carousel.addEventListener('heroslidechange', (e) => reveal(heroHeadings[e.detail.index]));
   }
 
   // Section headings — reveal once when scrolled into view.
@@ -908,7 +895,7 @@
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const subtext = findSubtext(entry.target);
-        reveal(prepare(entry.target), () => { if (subtext) subtext.classList.add('is-visible'); });
+        reveal(entry.target, () => { if (subtext) subtext.classList.add('is-visible'); });
         observer.unobserve(entry.target);
       }
     });
