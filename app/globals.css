@@ -416,9 +416,9 @@ p { margin: 0; }
 .hero-content h1 span { color: var(--brand-accent); }
 .hero-slide[data-slide-index="1"] .hero-content h1 span { color: #FFFFFF; }
 .hero-slide[data-slide-index="2"] .hero-content h1 span { color: #FFFFFF; }
-/* SplitText clones an accent <span> per word when it wraps more than one —
-   without this, the trailing space of each clone collapses against the next
-   inline-block clone and words run together ("umprincípio"). */
+/* Accent <span> highlights inside headings span more than one word in a
+   few places — without this, the trailing space before the next word
+   collapses and they run together ("umprincípio"). */
 h1 span, h2 span, h3 span { white-space: pre; }
 .hero-content .paragraph-l { color: #fff; max-width: 691px; }
 
@@ -891,9 +891,29 @@ h1 span, h2 span, h3 span { white-space: pre; }
 @media (prefers-reduced-motion: reduce) {
   .reveal-fade, .fade-after-title { opacity: 1; transform: none; transition: none; }
 }
-/* .fade-after-title elements wait for their section heading's SplitText
-   reveal to finish (see the SplitText script) instead of firing on their
-   own scroll-into-view — so the sub-text never appears before the title. */
+/* .fade-after-title elements wait for their section heading's blur-in
+   reveal to finish (see SplitHeading's onComplete) instead of firing on
+   their own scroll-into-view — so the sub-text never appears before the title. */
+
+/* Titles — magicui "Blur In by Text" (animation="blurIn" by="text"): the
+   whole heading blurs/fades in as a single block, no per-word/character
+   stagger. Toggled by SplitHeading.jsx. */
+.blur-in-text {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.3s ease-out, filter 0.3s ease-out;
+}
+.blur-in-text.is-visible { opacity: 1; filter: blur(0px); }
+/* The Inovação/Sustentabilidade tab heading already owns its own opacity
+   (dim when inactive, full when active) — let the reveal only touch blur
+   here so the two effects don't fight over the same property. */
+.features-tab-header h3.blur-in-text,
+.features-tab-header h3.blur-in-text.is-visible { opacity: revert; }
+.features-tab-header h3.blur-in-text { filter: blur(10px); transition: opacity 0.35s ease, filter 0.3s ease-out; }
+.features-tab-header h3.blur-in-text.is-visible { filter: blur(0px); }
+@media (prefers-reduced-motion: reduce) {
+  .blur-in-text { opacity: 1; filter: none; transition: none; }
+}
 
 /* Elements flagged [data-parallax] get a continuous translateY drift tied to
    scroll position (see the rAF-driven script near the end of the page) —

@@ -1,15 +1,17 @@
 'use client';
 
 import { useLayoutEffect, useRef } from 'react';
-import { gsap, SplitText } from '@/lib/gsap';
 
-// GSAP SplitText character reveal (matches magicui's slideLeft/by-character
-// text-animate).
+const BLUR_DURATION = 300; // ms — matches TextAnimate's default `duration` prop
+
+// magicui "Blur In by Text" reveal (magicui.design/docs/components/
+// text-animate#blur-in-by-text): <TextAnimate animation="blurIn" by="text" />
+// — the whole heading blurs/fades in as one block (CSS transition on
+// opacity + filter), not staggered per word/character.
 //
-// - `triggerOnScroll` (default true, for section headings): chars are split
-//   and hidden immediately, but the reveal tween only plays the first time
-//   the heading scrolls into view (threshold 0.4), same as the original
-//   IntersectionObserver-driven build.
+// - `triggerOnScroll` (default true, for section headings): hidden
+//   immediately, but the reveal only plays the first time the heading
+//   scrolls into view (threshold 0.4), same as the original build.
 // - `triggerOnScroll={false}` (for the hero, where the same heading needs to
 //   replay every time its slide becomes active): reveals immediately on
 //   mount — the parent remounts this component with a changing `key` to
@@ -21,22 +23,14 @@ export default function SplitHeading({ as: Tag = 'h2', className, children, onCo
     const el = ref.current;
     if (!el) return;
 
-    const split = new SplitText(el, { type: 'chars,words,lines' });
-    gsap.set(split.chars, { opacity: 0, x: 20 });
-
-    let tween = null;
     let observer = null;
+    let rafId = null;
+    let timeoutId = null;
 
     function reveal() {
-      tween = gsap.to(split.chars, {
-        x: 0,
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power1.out',
-        stagger: 0.03,
-        overwrite: true,
-        onComplete,
-      });
+      el.classList.add('blur-in-text');
+      rafId = requestAnimationFrame(() => el.classList.add('is-visible'));
+      if (onComplete) timeoutId = setTimeout(onComplete, BLUR_DURATION);
     }
 
     if (triggerOnScroll && 'IntersectionObserver' in window) {
@@ -56,8 +50,8 @@ export default function SplitHeading({ as: Tag = 'h2', className, children, onCo
 
     return () => {
       observer?.disconnect();
-      tween?.kill();
-      split.revert();
+      if (rafId) cancelAnimationFrame(rafId);
+      if (timeoutId) clearTimeout(timeoutId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

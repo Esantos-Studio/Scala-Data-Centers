@@ -1,6 +1,6 @@
 'use client';
 
-// Sub-text that waits for its section heading's SplitText reveal to finish
+// Sub-text that waits for its section heading's blur-in reveal to finish
 // (see SplitHeading's onComplete) instead of firing on its own scroll-into-
 // view — so it never appears before the title. `visible` is owned by the
 // parent section component.
