@@ -844,26 +844,72 @@
 
 <!-- ==========================================================================
      Titles — magicui "Blur In by Text" reveal (magicui.design/docs/components/
-     text-animate#blur-in-by-text): <TextAnimate animation="blurIn" by="text" />
-     — the whole heading blurs/fades in as one block (no per-word/character
-     stagger). The hero H1 replays every time its slide becomes active; every
-     other heading plays once, the first time it scrolls into view.
+     text-animate#blur-in-by-text): <TextAnimate animation="blurIn" as="h1">
+     — the reference demo doesn't pass a `by` prop, so it defaults to
+     by="word": each word blurs/fades in with a stagger. Splitting happens
+     once per heading (cached in splitCache) and wraps only text nodes, so
+     any authored color-highlight <span> inside the heading survives intact.
+     The hero H1 replays every time its slide becomes active (reusing its
+     cached word spans); every other heading plays once, the first time it
+     scrolls into view.
      ========================================================================== -->
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script>
 (function () {
-  const BLUR_DURATION = 300; // ms — matches TextAnimate's default `duration` prop
+  const DURATION = 0.3; // seconds — matches TextAnimate's default `duration` prop
+  const ITEM_TRANSITION_MS = 300; // ms — the blurIn item preset's own fixed duration
+  const splitCache = new WeakMap();
+
+  function splitIntoWordSpans(root) {
+    const spans = [];
+    function walk(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent;
+        if (!text) return;
+        const parts = text.split(/(\s+)/).filter(Boolean);
+        if (!parts.length) return;
+        const frag = document.createDocumentFragment();
+        parts.forEach((part) => {
+          if (/^\s+$/.test(part)) {
+            frag.appendChild(document.createTextNode(part));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'blur-in-word';
+            span.textContent = part;
+            frag.appendChild(span);
+            spans.push(span);
+          }
+        });
+        node.replaceWith(frag);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        Array.from(node.childNodes).forEach(walk);
+      }
+    }
+    Array.from(root.childNodes).forEach(walk);
+    return spans;
+  }
+
+  function getWordSpans(el) {
+    if (!splitCache.has(el)) splitCache.set(el, splitIntoWordSpans(el));
+    return splitCache.get(el);
+  }
 
   function reveal(el, onComplete) {
     if (!el) return;
-    el.classList.add('blur-in-text');
-    el.classList.remove('is-visible');
-    // Force a reflow so re-adding 'is-visible' on an already-revealed element
-    // (hero slide replay) retriggers the CSS transition instead of no-op'ing.
+    const spans = getWordSpans(el);
+    const stagger = spans.length ? DURATION / spans.length : 0;
+    spans.forEach((span) => span.classList.remove('is-visible'));
+    // Force a reflow so replaying on an already-revealed heading (hero slide
+    // replay) retriggers the CSS transition instead of no-op'ing.
     void el.offsetWidth;
-    requestAnimationFrame(() => el.classList.add('is-visible'));
-    if (onComplete) setTimeout(onComplete, BLUR_DURATION);
+    spans.forEach((span, i) => {
+      setTimeout(() => span.classList.add('is-visible'), i * stagger * 1000);
+    });
+    if (onComplete) {
+      const total = Math.max(0, spans.length - 1) * stagger * 1000 + ITEM_TRANSITION_MS;
+      setTimeout(onComplete, total);
+    }
   }
 
   // Finds the .fade-after-title sub-text that belongs with a given section

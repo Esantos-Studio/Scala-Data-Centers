@@ -413,9 +413,15 @@ p { margin: 0; }
   font-weight: 600;
   line-height: 1.3;
 }
-.hero-content h1 span { color: var(--brand-accent); }
-.hero-slide[data-slide-index="1"] .hero-content h1 span { color: #FFFFFF; }
-.hero-slide[data-slide-index="2"] .hero-content h1 span { color: #FFFFFF; }
+/* :not(.blur-in-word) — these color rules are for the author-highlighted
+   phrase span (e.g. <span>Soluções escaláveis</span>), not the per-word
+   spans SplitHeading.jsx wraps every word in for the blur-in reveal. A
+   highlighted phrase can contain more than one word, so those inner
+   word-spans still match `h1 span` — excluding them keeps the highlight
+   color from being overridden by (or overriding) the plain heading color. */
+.hero-content h1 span:not(.blur-in-word) { color: var(--brand-accent); }
+.hero-slide[data-slide-index="1"] .hero-content h1 span:not(.blur-in-word) { color: #FFFFFF; }
+.hero-slide[data-slide-index="2"] .hero-content h1 span:not(.blur-in-word) { color: #FFFFFF; }
 /* Accent <span> highlights inside headings span more than one word in a
    few places — without this, the trailing space before the next word
    collapses and they run together ("umprincípio"). */
@@ -513,7 +519,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 
 .solutions-content, .global-presence-content { flex: none; width: 570px; display: flex; flex-direction: column; gap: 24px; }
 .solutions-heading-block, .global-presence-text-block { display: flex; flex-direction: column; gap: 16px; }
-.solutions-heading-block h2 span, .global-presence-text-block h2 span { color: var(--brand-secondary); }
+.solutions-heading-block h2 span:not(.blur-in-word), .global-presence-text-block h2 span:not(.blur-in-word) { color: var(--brand-secondary); }
 .solutions-body { display: flex; flex-direction: column; gap: 32px; }
 .cards-solutions { display: flex; flex-direction: column; }
 .solution-card {
@@ -715,7 +721,7 @@ h1 span, h2 span, h3 span { white-space: pre; }
 }
 .features-tab-header { display: flex; flex-direction: column; gap: 16px; }
 .features-tab-header h3 { opacity: 0.35; transition: opacity 0.35s ease; }
-.features-tab-header h3 span { color: var(--brand-secondary); }
+.features-tab-header h3 span:not(.blur-in-word) { color: var(--brand-secondary); }
 .features-tab.is-active .features-tab-header h3 { opacity: 1; }
 .features-tab-body {
   display: flex;
@@ -895,43 +901,33 @@ h1 span, h2 span, h3 span { white-space: pre; }
    reveal to finish (see SplitHeading's onComplete) instead of firing on
    their own scroll-into-view — so the sub-text never appears before the title. */
 
-/* Titles — magicui "Blur In by Text" (animation="blurIn" by="text"): the
-   whole heading blurs/fades in as a single block, no per-word/character
-   stagger. Toggled by SplitHeading.jsx.
-   Scoped to h1–h6 specifically (not the bare .blur-in-text class) so the
-   effect can never land on a non-heading element (eyebrow, paragraph, card
-   text, etc.) — only real titles animate. */
-h1.blur-in-text, h2.blur-in-text, h3.blur-in-text,
-h4.blur-in-text, h5.blur-in-text, h6.blur-in-text {
+/* Titles — magicui "Blur In by Text" (magicui.design/docs/components/
+   text-animate#blur-in-by-text): <TextAnimate animation="blurIn" as="h1">
+   — the reference demo doesn't pass a `by` prop, so it defaults to
+   by="word": each word blurs/fades in with a stagger. SplitHeading.jsx
+   wraps every word of a heading's text in its own .blur-in-word span
+   (leaving any authored color-highlight <span> around them intact) and
+   toggles .is-visible on each with a stagger.
+   Scoped as a descendant of h1–h6 (never a bare class) so the effect can
+   only ever exist inside a real title — never an eyebrow, paragraph, or
+   card. Word-sized blur also stays within the heading's own line box, so
+   unlike blurring the whole heading at once, it never bleeds onto
+   whatever sits above/below it. */
+h1 .blur-in-word, h2 .blur-in-word, h3 .blur-in-word,
+h4 .blur-in-word, h5 .blur-in-word, h6 .blur-in-word {
+  display: inline-block;
+  white-space: pre;
   opacity: 0;
   filter: blur(10px);
   transition: opacity 0.3s ease-out, filter 0.3s ease-out;
-  /* CSS filter isn't clipped to the element's box by default — a large
-     blur radius on a multi-line heading bleeds visibly onto the eyebrow/
-     paragraph sitting right above or below it. `overflow: hidden` is the
-     most broadly-supported way to force that clip (the line-height's own
-     headroom keeps this from shaving descenders in the sharp end-state);
-     `contain: paint` is kept alongside it as a belt-and-suspenders
-     backstop. No padding/margin trick here — these headings are flex
-     items inside a `gap`-based column, and a compensating negative
-     margin would eat into that gap instead of staying layout-neutral. */
-  overflow: hidden;
-  contain: paint;
 }
-h1.blur-in-text.is-visible, h2.blur-in-text.is-visible, h3.blur-in-text.is-visible,
-h4.blur-in-text.is-visible, h5.blur-in-text.is-visible, h6.blur-in-text.is-visible {
+h1 .blur-in-word.is-visible, h2 .blur-in-word.is-visible, h3 .blur-in-word.is-visible,
+h4 .blur-in-word.is-visible, h5 .blur-in-word.is-visible, h6 .blur-in-word.is-visible {
   opacity: 1;
   filter: blur(0px);
 }
-/* The Inovação/Sustentabilidade tab heading already owns its own opacity
-   (dim when inactive, full when active) — let the reveal only touch blur
-   here so the two effects don't fight over the same property. */
-.features-tab-header h3.blur-in-text,
-.features-tab-header h3.blur-in-text.is-visible { opacity: revert; }
-.features-tab-header h3.blur-in-text { filter: blur(10px); transition: opacity 0.35s ease, filter 0.3s ease-out; }
-.features-tab-header h3.blur-in-text.is-visible { filter: blur(0px); }
 @media (prefers-reduced-motion: reduce) {
-  .blur-in-text { opacity: 1; filter: none; transition: none; }
+  .blur-in-word { opacity: 1; filter: none; transition: none; }
 }
 
 /* Elements flagged [data-parallax] get a continuous translateY drift tied to
