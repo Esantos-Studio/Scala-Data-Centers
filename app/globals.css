@@ -908,9 +908,14 @@ h4.blur-in-text, h5.blur-in-text, h6.blur-in-text {
   transition: opacity 0.3s ease-out, filter 0.3s ease-out;
   /* CSS filter isn't clipped to the element's box by default — a large
      blur radius on a multi-line heading bleeds visibly onto the eyebrow/
-     paragraph sitting right above or below it. Containing paint to this
-     element's own box keeps the blur (and its transition) scoped to the
-     title only, matching the previous per-character effect. */
+     paragraph sitting right above or below it. `overflow: hidden` is the
+     most broadly-supported way to force that clip (the line-height's own
+     headroom keeps this from shaving descenders in the sharp end-state);
+     `contain: paint` is kept alongside it as a belt-and-suspenders
+     backstop. No padding/margin trick here — these headings are flex
+     items inside a `gap`-based column, and a compensating negative
+     margin would eat into that gap instead of staying layout-neutral. */
+  overflow: hidden;
   contain: paint;
 }
 h1.blur-in-text.is-visible, h2.blur-in-text.is-visible, h3.blur-in-text.is-visible,
