@@ -897,8 +897,12 @@ h1 span, h2 span, h3 span { white-space: pre; }
 
 /* Titles — magicui "Blur In by Text" (animation="blurIn" by="text"): the
    whole heading blurs/fades in as a single block, no per-word/character
-   stagger. Toggled by SplitHeading.jsx. */
-.blur-in-text {
+   stagger. Toggled by SplitHeading.jsx.
+   Scoped to h1–h6 specifically (not the bare .blur-in-text class) so the
+   effect can never land on a non-heading element (eyebrow, paragraph, card
+   text, etc.) — only real titles animate. */
+h1.blur-in-text, h2.blur-in-text, h3.blur-in-text,
+h4.blur-in-text, h5.blur-in-text, h6.blur-in-text {
   opacity: 0;
   filter: blur(10px);
   transition: opacity 0.3s ease-out, filter 0.3s ease-out;
@@ -909,7 +913,11 @@ h1 span, h2 span, h3 span { white-space: pre; }
      title only, matching the previous per-character effect. */
   contain: paint;
 }
-.blur-in-text.is-visible { opacity: 1; filter: blur(0px); }
+h1.blur-in-text.is-visible, h2.blur-in-text.is-visible, h3.blur-in-text.is-visible,
+h4.blur-in-text.is-visible, h5.blur-in-text.is-visible, h6.blur-in-text.is-visible {
+  opacity: 1;
+  filter: blur(0px);
+}
 /* The Inovação/Sustentabilidade tab heading already owns its own opacity
    (dim when inactive, full when active) — let the reveal only touch blur
    here so the two effects don't fight over the same property. */
