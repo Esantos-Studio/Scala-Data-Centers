@@ -902,6 +902,12 @@ h1 span, h2 span, h3 span { white-space: pre; }
   opacity: 0;
   filter: blur(10px);
   transition: opacity 0.3s ease-out, filter 0.3s ease-out;
+  /* CSS filter isn't clipped to the element's box by default — a large
+     blur radius on a multi-line heading bleeds visibly onto the eyebrow/
+     paragraph sitting right above or below it. Containing paint to this
+     element's own box keeps the blur (and its transition) scoped to the
+     title only, matching the previous per-character effect. */
+  contain: paint;
 }
 .blur-in-text.is-visible { opacity: 1; filter: blur(0px); }
 /* The Inovação/Sustentabilidade tab heading already owns its own opacity
