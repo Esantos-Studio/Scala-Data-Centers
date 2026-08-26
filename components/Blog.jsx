@@ -7,20 +7,43 @@ import SplitHeading from './SplitHeading';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 
 const CARDS = [
-  { size: 'large', bg: '/Assets/Thumbnail-card-blog-01.png', date: '20 Jan 2025' },
-  { size: 'small', bg: '/Assets/Thumbnail-card-blog-02.png', date: '20 Jan 2025' },
-  { size: 'small', bg: '/Assets/Thumbnail-card-blog-03.png', date: '20 Jan 2025' },
-  { size: 'small', bg: '/Assets/Thumbnail-card-blog-04.png', date: '20 Jan 2025' },
+  {
+    size: 'large',
+    bg: '/Assets/2025_Palo-Alto_Liberacao-de-Credito-do-BNDES-2-1024x576.jpg',
+    badge: 'Investimentos',
+    title: 'BNDES aprova R$ 180 milhões para Scala investir em equipamentos para data centers',
+    date: '20 Jan 2025',
+  },
+  {
+    size: 'small',
+    bg: '/Assets/2025_DCD-Studio_A-revolucao-dos-data-centers-na-era-da-inteligencia-artificial-1024x576.jpg',
+    badge: 'Data Centers',
+    title: 'DCD>Studio: A revolução dos data centers na era da inteligência artificial',
+    date: '20 Jan 2025',
+  },
+  {
+    size: 'small',
+    bg: '/Assets/BNAmericas-1.jpg',
+    badge: 'Scala na Mídia',
+    title: 'Scala é destaque no portfólio da DigitalBridge em 2024',
+    date: '20 Jan 2025',
+  },
+  {
+    size: 'small',
+    bg: '/Assets/2024_-Ass.-Prot.-Intencoes-POA-45-1-1024x682.jpg',
+    badge: 'Tecnologia',
+    title: 'Governo assina lei que cria o primeiro polo de tecnologia de data centers do país na quarta-feira (18)',
+    date: '20 Jan 2025',
+  },
 ];
-const TITLE = 'Scala Data Centers e BNDES concluem segunda etapa...';
 
 function BlogCard({ card, cardRef }) {
   return (
     <div ref={cardRef} className={`blog-card blog-card-${card.size}`}>
       <div className="blog-card-bg" style={{ backgroundImage: `url('${card.bg}')` }} />
       <div className="blog-card-content">
-        <span className="blog-badge">Sustentabilidade</span>
-        <p className="blog-title">{TITLE}</p>
+        <span className="blog-badge">{card.badge}</span>
+        <p className="blog-title">{card.title}</p>
         <div className="blog-card-more">
           <p className="blog-card-date">{card.date}</p>
           <a className="blog-card-readmore" href="#">Ler artigo <svg fill="none"><use href="#icon-arrow-right" /></svg></a>
