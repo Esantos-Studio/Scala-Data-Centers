@@ -9,9 +9,9 @@ import { gsap, ScrollTrigger } from '@/lib/gsap';
 const CARDS = [
   {
     size: 'large',
-    bg: '/Assets/2025_Palo-Alto_Liberacao-de-Credito-do-BNDES-2-1024x576.jpg',
-    badge: 'Investimentos',
-    title: 'BNDES aprova R$ 180 milhões para Scala investir em equipamentos para data centers',
+    bg: '/Assets/Tech-Capital-Global.png',
+    badge: 'Eventos',
+    title: 'Vitória dupla The Tech Capital Global Awards 2025',
     date: '20 Jan 2025',
   },
   {
